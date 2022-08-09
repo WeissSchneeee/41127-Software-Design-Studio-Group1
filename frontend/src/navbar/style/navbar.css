@@ -1,0 +1,40 @@
+header {
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 0 75px 0;
+  opacity: 0.9;
+  filter: grayscale(35%);
+  flex: 50%;
+  position: relative;
+  z-index: 1000;
+}
+
+.content-navbar {
+  margin: 0 0 0 -5px;
+  overflow: visible;
+}
+
+.topnav {
+  overflow: hidden;
+  float: right;
+}
+
+.topnav a {
+  float: left;
+  color: #0a0a0a;
+  text-align: center;
+  padding: 20px 15px;
+  text-decoration: none;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.topnav a:hover, .topnav-dropdown:hover .topnav-dropbtn {
+  border-bottom: 3px solid #0a0a0a;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #0a0a0a;
+  color: #0a0a0a;
+}/*# sourceMappingURL=navbar.css.map */

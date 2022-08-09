@@ -1,0 +1,104 @@
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 60px;
+}
+
+a {
+  color: #343434;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #343434;
+}
+
+.checkbox {
+  font-weight: 550;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.form-floating {
+  margin: 5px;
+}
+
+.form-floating > label {
+  width: auto;
+}
+
+button {
+  background-color: #343434;
+  color: #d4d4d4;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+}
+
+button:hover {
+  color: #343434;
+  background-color: #d4d4d4;
+}
+
+.form-signup, .form-signin {
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.left-field {
+  float: left;
+  margin-right: 0px;
+  width: 50%;
+}
+
+.right-field {
+  display: grid;
+}
+
+.form-signin h3 {
+  margin-bottom: 10px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.middle {
+  border-radius: 0;
+  margin-bottom: -1px;
+}
+
+.bottom {
+  margin-bottom: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.nav-brand {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 770px) {
+  .nav-brand {
+    font-size: 1.8rem;
+  }
+}
+@media (min-width: 992px) {
+  .nav-brand {
+    font-size: 2.8rem;
+  }
+}/*# sourceMappingURL=index.css.map */
