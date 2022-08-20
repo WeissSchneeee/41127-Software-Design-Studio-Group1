@@ -44,7 +44,7 @@ button:hover {
   background-color: #d4d4d4;
 }
 
-.form-signup, .form-signin {
+.form-signin {
   max-width: 450px;
   padding: 15px;
   margin: auto;

@@ -46,8 +46,8 @@ button:hover{
     background-color: #d4d4d4;
 }
 
-//-----SIGN UP-----
-.form-signup, .form-signin{
+// -----SIGN IN-----
+.form-signin{
     max-width: 450px;
     padding: 15px;
     margin: auto;
@@ -62,8 +62,6 @@ button:hover{
 .right-field{
     display: grid;
 }
-
-// -----SIGN IN-----
 .form-signin h3{
     margin-bottom: 10px;
 }

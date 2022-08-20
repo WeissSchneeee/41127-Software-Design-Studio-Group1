@@ -24,6 +24,10 @@ connection.connect((err) => {
 });
 exports.connection = connection;
 
+// ACCOUNT CONTROLLER APIs
+app.use("/api/signin", require("./controller/account_controller/SignInController"));
+app.use("/api/authenticatelogin", require("./controller/account_controller/AuthenticateLoginController"));
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });

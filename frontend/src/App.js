@@ -1,8 +1,33 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-import { SignUp } from "./account/component/SignUp";
-import { SignIn } from "./account/component/SignIn";
 import { NavBar } from "./navbar/component/navbar";
+import { SignIn } from "./account/component/SignIn";
+import { Profile } from "./account/component/Profile";
+
+export const getUserID = _ => {
+  let token;
+  if(localStorage.getItem("rememberMe") === "true")
+    token = localStorage.getItem("u");
+  else
+    token  = sessionStorage.getItem("u");
+  return fetch("/api/authenticatelogin", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      token: token
+    })
+  })
+    .then((res) => res.json() )
+    .then((data) => {
+      return String(data.userID);
+    })
+    .catch(error => {
+      console.log(error);
+      return "none";
+    });
+}
 
 function App() {
   return (
@@ -14,8 +39,8 @@ function App() {
         <Route path = "/signin" element = {<NavBar page="signin"/>}>
           <Route path = "" element = {<SignIn/>}/>
         </Route>
-        <Route path = "/signup" element = {<NavBar page="signup"/>}>
-          <Route path = "" element = {<SignUp/>}/>
+        <Route path = "/profile" element = {<NavBar page="profile"/>}>
+          <Route path = "" element = {<Profile/>}/>
         </Route>
         <Route path="*" element={<NavBar/>}/>
       </Routes>

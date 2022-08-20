@@ -40,3 +40,53 @@ header{
     border-bottom: 3px solid $kindofblack;
     color: $kindofblack;
 }
+.topnav-dropbtn-active{
+    border-bottom: 3px solid $kindofblack !important;
+    color: $kindofblack !important;
+}
+.topnav-dropdown {
+    display: block;
+    float: left;
+    position: relative;
+}
+.topnav-dropdown .topnav-dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: $kindofblack;
+    padding: 20px 15px;
+    background-color: inherit;
+    margin: 0;
+    font-weight: inherit;
+    text-transform: inherit;
+}
+.topnav-dropdown-content {
+    display: none;
+    position: relative;
+    background-color: rgba(199, 199, 199, 0.87);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.445);
+    z-index: 1;
+    right: 0;
+}
+.topnav-dropdown-content a {
+    float: none;
+    color: $kindofblack;
+    text-align: center;
+    padding: 20px 15px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+.topnav-dropdown-content a:hover {
+    background-color: rgba(121, 121, 121, 0.705);
+    border-bottom: transparent;
+    display: block;
+}
+.topnav-dropdown-content a.active {
+    border-bottom: none;
+    background-color: rgba(121, 121, 121, 0.705);
+}
+.topnav-dropdown:hover .topnav-dropdown-content {
+    position: fixed;
+    display: block;
+}
