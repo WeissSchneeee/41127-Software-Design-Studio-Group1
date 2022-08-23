@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Outlet} from "react-router-dom";
 import {AccountCircle, Login, MeetingRoom} from '@mui/icons-material/';
 import '../style/navbar.css';
-import { getUserID } from "../../App";
+import { getUserID, logOut } from "../../App";
 
 export const NavBar = (props) => {
     const [userID, setUserID] = useState();
@@ -30,14 +30,8 @@ const accountMenu = (page) => {
             <button className = {page === "profile" ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><AccountCircle/></button>
             <div className="topnav-dropdown-content">
                 <a className={page === "profile" ? "active" : ""} href = "/profile"><AccountCircle/>Profile</a>
-                <a href = "/" onClick={logOut}><MeetingRoom/>Log Out</a>
+                <a href = "/signin" onClick={logOut}><MeetingRoom/>Log Out</a>
             </div>
         </div>
     );
-};
-
-const logOut = _ => {
-    sessionStorage.removeItem("u");
-    localStorage.removeItem("u");
-    localStorage.removeItem("rememberMe");
 };

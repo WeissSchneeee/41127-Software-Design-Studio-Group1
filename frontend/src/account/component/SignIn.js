@@ -10,7 +10,6 @@ export const SignIn = _ => {
     const handleChange = (e) => {
         rememberMe = e.target.checked;
     };
-
     const signIn = _ => {
         try{
             const email = document.getElementById("email").value;
@@ -52,7 +51,6 @@ export const SignIn = _ => {
     }
 
     if(userID !== "none") return window.location.href = "/profile";
-
     return(
         <section className="form-signin">
             <h1>SIGN IN</h1>

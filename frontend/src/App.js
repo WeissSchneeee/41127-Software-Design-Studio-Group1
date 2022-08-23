@@ -27,7 +27,12 @@ export const getUserID = _ => {
       console.log(error);
       return "none";
     });
-}
+};
+export const logOut = _ => {
+  sessionStorage.removeItem("u");
+  localStorage.removeItem("u");
+  localStorage.removeItem("rememberMe");
+};
 
 function App() {
   return (

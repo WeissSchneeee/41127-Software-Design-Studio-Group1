@@ -53,7 +53,6 @@ module.exports = router;
 
 const getUser = (email) => {
     const sql = `SELECT * FROM user_t WHERE email_address = '${String(email).toLowerCase()}';`;
-
     return new Promise((resolve, reject) => {
         connection.query(sql, (err, result) => {
             if(err){

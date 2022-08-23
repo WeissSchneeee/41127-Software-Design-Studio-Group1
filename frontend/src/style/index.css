@@ -101,4 +101,35 @@ button:hover {
   .nav-brand {
     font-size: 2.8rem;
   }
+}
+.form-popup {
+  display: none;
+  position: fixed !important;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  padding: auto;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+.form-popup h2 {
+  font-weight: 700;
+}
+
+.form-container {
+  width: 72.5vw;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input, .form-container select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input:focus, .form-container select:focus {
+  outline: none;
 }/*# sourceMappingURL=index.css.map */

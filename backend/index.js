@@ -27,6 +27,9 @@ exports.connection = connection;
 // ACCOUNT CONTROLLER APIs
 app.use("/api/signin", require("./controller/account_controller/SignInController"));
 app.use("/api/authenticatelogin", require("./controller/account_controller/AuthenticateLoginController"));
+app.use("/api/getprofile", require("./controller/account_controller/getProfileController"));
+app.use("/api/updateuser", require("./controller/account_controller/UpdateUserDataController"));
+app.use("/api/deleteuser", require("./controller/account_controller/DeleteUserController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
