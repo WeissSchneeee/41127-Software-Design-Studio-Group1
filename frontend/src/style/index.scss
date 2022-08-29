@@ -45,6 +45,14 @@ button:hover{
     color: #343434;
     background-color: #d4d4d4;
 }
+.center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 // -----SIGN IN-----
 .form-signin{
@@ -56,11 +64,14 @@ button:hover{
 }
 .left-field{
     float: left;
-    margin-right: 0px;
+    margin-top: auto;
+    margin-right: 5px;
     width: 50%;
 }
 .right-field{
     display: grid;
+    margin-top: auto;
+    margin-left: 5px;
 }
 .form-signin h3{
     margin-bottom: 10px;
@@ -107,7 +118,6 @@ margin-bottom: -1px;
     border: 3px solid #f1f1f1;
     z-index: 9;
     padding: auto;
-    // margin-top: 50px;
     max-height: 80vh;
     overflow: scroll;
   }
@@ -128,4 +138,7 @@ margin-bottom: -1px;
 }
 .form-container input:focus, .form-container select:focus{
     outline: none;
+}
+.form-floating select{
+    height: calc(3.5rem + 2px);
 }

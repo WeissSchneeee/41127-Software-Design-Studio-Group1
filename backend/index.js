@@ -30,6 +30,9 @@ app.use("/api/authenticatelogin", require("./controller/account_controller/Authe
 app.use("/api/getprofile", require("./controller/account_controller/getProfileController"));
 app.use("/api/updateuser", require("./controller/account_controller/UpdateUserDataController"));
 app.use("/api/deleteuser", require("./controller/account_controller/DeleteUserController"));
+app.use("/api/getalluser", require("./controller/account_controller/GetAllUserController"));
+app.use("/api/createuser", require("./controller/account_controller/CreateUserController"));
+app.use("/api/deletemultipleuser", require("./controller/account_controller/DeleteMultipleUserController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

@@ -44,6 +44,14 @@ button:hover {
   background-color: #d4d4d4;
 }
 
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .form-signin {
   max-width: 450px;
   padding: 15px;
@@ -54,12 +62,15 @@ button:hover {
 
 .left-field {
   float: left;
-  margin-right: 0px;
+  margin-top: auto;
+  margin-right: 5px;
   width: 50%;
 }
 
 .right-field {
   display: grid;
+  margin-top: auto;
+  margin-left: 5px;
 }
 
 .form-signin h3 {
@@ -132,4 +143,8 @@ button:hover {
 
 .form-container input:focus, .form-container select:focus {
   outline: none;
+}
+
+.form-floating select {
+  height: calc(3.5rem + 2px);
 }/*# sourceMappingURL=index.css.map */

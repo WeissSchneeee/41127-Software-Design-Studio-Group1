@@ -82,7 +82,6 @@ export const Profile = _ => {
     };
 
     if(userID === "none") return window.location.href = "/signin";
-
     return(
         <section>
             <section className="profile">

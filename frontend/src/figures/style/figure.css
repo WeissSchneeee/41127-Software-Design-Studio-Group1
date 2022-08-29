@@ -1,0 +1,69 @@
+.main-table {
+  overflow: scroll;
+}
+.main-table .main-table-header, .main-table .css-apqrd9-MuiTableBody-root {
+  background-color: white;
+}
+.main-table .css-m1xwsv-MuiTableCell-root, .main-table .css-10dfkli-MuiTableCell-root, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active,
+.main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon, .main-table .css-i4bv87-MuiSvgIcon-root,
+.main-table .css-1ygcj2i-MuiTableCell-root, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root, .main-table .css-105x7br-MuiTypography-root,
+.main-table .table-cell, .main-table .css-1azl6jz-MuiTableCell-root {
+  text-align: center;
+  color: #3D3D3D;
+  font-family: "verdana";
+  font-weight: 700;
+}
+.main-table .css-m1xwsv-MuiTableCell-root:hover, .main-table .css-10dfkli-MuiTableCell-root:hover, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active:hover,
+.main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon:hover, .main-table .css-i4bv87-MuiSvgIcon-root:hover,
+.main-table .css-1ygcj2i-MuiTableCell-root:hover, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root:hover, .main-table .css-105x7br-MuiTypography-root:hover,
+.main-table .table-cell:hover, .main-table .css-1azl6jz-MuiTableCell-root:hover {
+  color: #115F5F;
+}
+.main-table .css-m1xwsv-MuiTableCell-root input, .main-table .css-10dfkli-MuiTableCell-root input, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active input,
+.main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon input, .main-table .css-i4bv87-MuiSvgIcon-root input,
+.main-table .css-1ygcj2i-MuiTableCell-root input, .main-table .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root input, .main-table .css-105x7br-MuiTypography-root input,
+.main-table .table-cell input, .main-table .css-1azl6jz-MuiTableCell-root input {
+  background-color: transparent;
+  border-color: transparent;
+}
+.main-table .tool-bar {
+  background-color: white;
+}
+.main-table .tool-bar .css-2pbtu6-MuiTypography-root {
+  font-family: "verdana";
+  color: black;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.main-table .main-table-footer {
+  background-color: white;
+}
+.main-table .main-table-footer .css-i4bv87-MuiSvgIcon-root {
+  color: black;
+}
+.main-table .main-table-footer .css-i4bv87-MuiSvgIcon-root:hover {
+  color: #115F5F;
+}
+.main-table .main-table-footer .css-pdct74-MuiTablePagination-selectLabel, .main-table .main-table-footer .css-levciy-MuiTablePagination-displayedRows {
+  margin-bottom: -5px;
+  height: 29px;
+}
+
+.MuiTableCell-root {
+  font-weight: 400 !important;
+}
+
+.MuiPaper-root ul {
+  padding: 0 !important;
+  background-color: #C4C4C4;
+}
+.MuiPaper-root .css-10by3a5-MuiButtonBase-root-MuiMenuItem-root-MuiTablePagination-menuItem.Mui-selected {
+  background-color: white;
+}
+.MuiPaper-root .css-10by3a5-MuiButtonBase-root-MuiMenuItem-root-MuiTablePagination-menuItem {
+  min-height: 50px;
+}
+.MuiPaper-root .css-10by3a5-MuiButtonBase-root-MuiMenuItem-root-MuiTablePagination-menuItem:hover {
+  background-color: white;
+}/*# sourceMappingURL=figure.css.map */

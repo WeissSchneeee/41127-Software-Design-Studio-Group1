@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import { NavBar } from "./navbar/component/navbar";
 import { SignIn } from "./account/component/SignIn";
 import { Profile } from "./account/component/Profile";
+import { AccountList } from "./account/component/AccountList";
 
 export const getUserID = _ => {
   let token;
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route path = "/profile" element = {<NavBar page="profile"/>}>
           <Route path = "" element = {<Profile/>}/>
+        </Route>
+        <Route path = "/accountlist" element = {<NavBar page="accountlist"/>}>
+          <Route path = "" element = {<AccountList/>}/>
         </Route>
         <Route path="*" element={<NavBar/>}/>
       </Routes>
