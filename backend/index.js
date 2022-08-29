@@ -33,6 +33,7 @@ app.use("/api/deleteuser", require("./controller/account_controller/DeleteUserCo
 app.use("/api/getalluser", require("./controller/account_controller/GetAllUserController"));
 app.use("/api/createuser", require("./controller/account_controller/CreateUserController"));
 app.use("/api/deletemultipleuser", require("./controller/account_controller/DeleteMultipleUserController"));
+app.use("/api/forgetpassword", require("./controller/account_controller/ForgetPasswordController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
