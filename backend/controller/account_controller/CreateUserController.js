@@ -45,7 +45,9 @@ const createAccount = async (accountType, email, password, firstName, lastName, 
             first_name: firstName,
             last_name: lastName,
             contact_number: contactNumber,
-            user_type: (String(accountType).toLowerCase() === 'a') ? "System Admin" : (String(accountType).toLowerCase() === 'e' ? "Staff" : "Student")
+            user_type: (String(accountType).toLowerCase() === 'a') ? "System Admin" : (String(accountType).toLowerCase() === 'e' ? "Staff" : "Student"),
+            role: (String(accountType).toLowerCase() === 's') ? "Student" : role,
+            dob: new Date(dob).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"})
         };
         const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${accountType}');`;
         return new Promise((resolve, reject) => {

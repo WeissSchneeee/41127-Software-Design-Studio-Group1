@@ -47,6 +47,12 @@ const accountTable = (users, userID, setUsers) => {
             label: 'USER TYPE',
         },
         {
+            id: 'role',
+            numeric: false,
+            disablePadding: false,
+            label: 'ROLE',
+        },
+        {
             id: 'email',
             numeric: false,
             disablePadding: false,
@@ -69,6 +75,12 @@ const accountTable = (users, userID, setUsers) => {
             numeric: false,
             disablePadding: false,
             label: 'CONTACT NUMBER',
+        },
+        {
+            id: 'dob',
+            numeric: false,
+            disablePadding: false,
+            label: 'DATE OF BIRTH',
         }
     ]
     const createUser = _ => {
@@ -132,10 +144,12 @@ const cellFormat = (handleClick, isSelected, index, row) => {
             {row.user_id}
             </TableCell>
             <TableCell className="table-cell" align="center">{row.user_type}</TableCell>
+            <TableCell className="table-cell" align="center">{row.role}</TableCell>
             <TableCell className="table-cell" align="center">{row.email_address}</TableCell>
             <TableCell className="table-cell" align="center">{row.first_name}</TableCell>
             <TableCell className="table-cell" align="center">{row.last_name}</TableCell>
             <TableCell className="table-cell" align="center">{row.contact_number}</TableCell>
+            <TableCell className="table-cell" align="center">{row.dob}</TableCell>
         </TableRow>
     );
 };
