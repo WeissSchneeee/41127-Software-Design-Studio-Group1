@@ -1,26 +1,28 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route, HashRouter, Swi, BrowserRouter } from "react-router-dom";
 import { NavBar } from "./navbar/component/navbar";
 import { SignIn } from "./account/component/SignIn";
 import { Profile } from "./account/component/Profile";
 import { AccountList } from "./account/component/AccountList";
+import { CourseList } from "./course/component/CourseList";
+import { CreateCourseForm } from "./course/component/CreateCourseForm";
 
 export const getUserID = _ => {
   let token;
-  if(localStorage.getItem("rememberMe") === "true")
+  if (localStorage.getItem("rememberMe") === "true")
     token = localStorage.getItem("u");
   else
-    token  = sessionStorage.getItem("u");
+    token = sessionStorage.getItem("u");
   return fetch("/api/authenticatelogin", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       token: token
     })
   })
-    .then((res) => res.json() )
+    .then((res) => res.json())
     .then((data) => {
       return String(data.userID);
     })
@@ -37,23 +39,26 @@ export const logOut = _ => {
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path = "/" element = {<NavBar page="signin"/>}>
-          <Route path = "" element = {<SignIn/>}/>
-        </Route>
-        <Route path = "/signin" element = {<NavBar page="signin"/>}>
-          <Route path = "" element = {<SignIn/>}/>
-        </Route>
-        <Route path = "/profile" element = {<NavBar page="profile"/>}>
-          <Route path = "" element = {<Profile/>}/>
-        </Route>
-        <Route path = "/accountlist" element = {<NavBar page="accountlist"/>}>
-          <Route path = "" element = {<AccountList/>}/>
-        </Route>
-        <Route path="*" element={<NavBar/>}/>
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<NavBar page="signin" />}>
+        <Route path="" element={<SignIn />} />
+      </Route>
+      <Route path="/signin" element={<NavBar page="signin" />}>
+        <Route path="" element={<SignIn />} />
+      </Route>
+      <Route path="/profile" element={<NavBar page="profile" />}>
+        <Route path="" element={<Profile />} />
+      </Route>
+      <Route path="/accountlist" element={<NavBar page="accountlist" />}>
+        <Route path="" element={<AccountList />} />
+      </Route>
+      <Route path="/courselist" element={<NavBar page="courselist" />}>
+        <Route path="" element={<CourseList />} />
+        <Route path="create" element={<CreateCourseForm />} />
+        <Route path="update/:id" element={<CreateCourseForm />} />
+      </Route>
+      <Route path="*" element={<NavBar />} />
+    </Routes>
   );
 }
 
