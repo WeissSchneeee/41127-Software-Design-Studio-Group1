@@ -6,6 +6,8 @@ import { Profile } from "./account/component/Profile";
 import { AccountList } from "./account/component/AccountList";
 import { CourseList } from "./course/component/CourseList";
 import { CreateCourseForm } from "./course/component/CreateCourseForm";
+import { CourseDetail } from "./course/component/CourseDetail";
+import { CreateSubjectForm } from "./subject/component/CreateSubjectForm";
 
 export const getUserID = _ => {
   let token;
@@ -55,7 +57,11 @@ function App() {
       <Route path="/courselist" element={<NavBar page="courselist" />}>
         <Route path="" element={<CourseList />} />
         <Route path="create" element={<CreateCourseForm />} />
+        <Route path="detail/:id" element={<CourseDetail />} />
         <Route path="update/:id" element={<CreateCourseForm />} />
+      </Route>
+      <Route path="/subjectlist/:course" element={<NavBar page="subjectlist" />}>
+        <Route path="add" element={<CreateSubjectForm />} />
       </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>

@@ -4,7 +4,7 @@ import { MainTable } from "../../figures/components/MainTable";
 import { getUserID } from "../../App";
 import { CreateCourseForm } from "./CreateCourseForm";
 import { useNavigate } from "react-router-dom";
-import { Edit } from "@mui/icons-material";
+import { Edit, Search } from "@mui/icons-material";
 
 export const CourseList = (props) => {
     const [userID, setUserID] = useState();
@@ -89,14 +89,36 @@ export const CourseList = (props) => {
                 id: 'edit',
                 numeric: true,
                 disablePadding: false,
-                label: 'Edit',
+                label: 'Action',
             },
         ]
         const handleCreate = _ => {
             navigate(`/courselist/create`)
         };
+
+
+        const handleDelete = (selected) => {
+            fetch("/api/course/delete", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    list: selected
+                })
+            })
+                .then((res) => { return res.json(); })
+                .then((data) => {
+                    if (data.status) {
+                        loadData()
+                    }
+                    setLoading(false)
+
+                });
+        }
+
         return (
-            MainTable(columns, state.data, cellFormat, "Course List", "New Course", handleCreate)
+            MainTable(columns, state.data, cellFormat, "Course List", "New Course", handleCreate, "Delete Course", handleDelete)
         );
     };
     const cellFormat = (handleClick, isSelected, index, row) => {
@@ -134,7 +156,7 @@ export const CourseList = (props) => {
                 <TableCell className="table-cell" align="center">{row.course_duration}</TableCell>
                 <TableCell className="table-cell" align="center">{row.course_credit_points}</TableCell>
                 <TableCell className="table-cell" align="center">{row.course_fees}</TableCell>
-                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/courselist/update/${row.course_id}`)}><Edit/></IconButton></TableCell>
+                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/courselist/detail/${row.course_id}`)}><Search /></IconButton></TableCell>
             </TableRow>
         );
     };
@@ -144,7 +166,7 @@ export const CourseList = (props) => {
             {
                 loading ? <div className="container">Loading data, please wait...</div> : <AccountTable />
             }
-            
+
         </section>
     );
 };

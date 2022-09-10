@@ -1,28 +1,31 @@
 const express = require("express");
 const path = require('path');
-require ("dotenv").config();
+require("dotenv").config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
 
 // CONNECTION TO HEROKU POSTGRESQL DATABASE
-const {Client} = require("pg");
-const connection = new Client({
-    host: "ec2-34-207-12-160.compute-1.amazonaws.com",
-    user: "fkqtzcrjkybizb",
-    port: 5432,
-    password: "041098df80146c8615cd856429f37d05afe722c42b88f5b728f790f4c6462746",
-    database: "d5daga22vac1v1",
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+const { Client } = require("pg");
+const { db } = require('./db');
+const connection = new Client(db);
+
 connection.connect((err) => {
-    if(err) console.log(err);
+    if (err) console.log(err);
     else console.log("Connected to database!");
 });
-exports.connection = connection;
+
+const addErrorLog = async (prefix, message) => {
+    let ts = Math.floor((Date.now()) / 1000)
+    const sql = `insert into sys_log(time, prefix, message) values ($1,$2,$3)`
+    await connection.query(sql, [ts, prefix, message], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+module.exports = { connection, addErrorLog }
 
 // ACCOUNT CONTROLLER APIs
 app.use("/api/signin", require("./controller/account_controller/SignInController"));
@@ -35,10 +38,18 @@ app.use("/api/createuser", require("./controller/account_controller/CreateUserCo
 app.use("/api/deletemultipleuser", require("./controller/account_controller/DeleteMultipleUserController"));
 app.use("/api/forgetpassword", require("./controller/account_controller/ForgetPasswordController"));
 
+//COURSE Controller
+app.use("/api/course/list", require("./controller/couse_controller/CourseListController"));
+app.use("/api/course/detail", require("./controller/couse_controller/CourseDetailController"));
+app.use("/api/course/create", require("./controller/couse_controller/CourseCreateController"));
+app.use("/api/course/update", require("./controller/couse_controller/CourseUpdateController"));
+app.use("/api/course/delete", require("./controller/couse_controller/CourseDeleteController"));
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
 app.on('error', (err) => {
+    addErrorLog('app error', JSON.stringify(err))
     console.log(err.message);
- });
+});
