@@ -4,7 +4,7 @@ const {connection, addErrorLog} = require("../../index.js");
 
 router.post("/", async (req, res) => {
     try {
-        const sql = `SELECT * FROM course wheres course_id = $1`;
+        const sql = `SELECT * FROM course where course_id = $1`;
         connection.query(sql, [req.body.id], async (err, result) => {
             if (err) {
                 console.log(err);
