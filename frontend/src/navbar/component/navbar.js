@@ -45,7 +45,7 @@ export const NavBar = (props) => {
                 <div className="topnav">
                     {(userID === "none") && <a className={props.page === "signin" ? "active" : ""} href="/signin"><Login />Sign In</a>}
                     {
-                        (userID !== "none") && isStaff(userType) && <>
+                        (userID !== "none") && (isAdmin(userType) || isStaff(userType)) && <>
                             <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Storage />Course List</a>
                         </>
                     }
