@@ -1,5 +1,5 @@
-import { Add, Create, Delete, Edit } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Add, Backspace, Create, Delete, Edit } from "@mui/icons-material";
+import { Backdrop, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, withRouter } from "react-router-dom";
 // import "../style/account.css";
@@ -61,6 +61,7 @@ export function CourseDetail(props) {
             <div className="container">
                 <h2 className="mb-3">Detail of : <strong>{state.input.course_name}</strong></h2>
                 <p>
+                    <IconButton title="Back" onClick={() => navigate(`/courselist`)}><Backspace/></IconButton> 
                     <IconButton title="Update" onClick={() => navigate(`/courselist/update/${state.input.course_id}`)}><Edit/></IconButton>
                     <IconButton title="Delete" onClick={handleDeleteBtn}><Delete/></IconButton>
                 </p>
