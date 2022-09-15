@@ -82,7 +82,7 @@ export function CreateSubjectForm(props) {
     const submit = (e) => {
         e.preventDefault()
         setSubmitting(true)
-        fetch(typeof (id) === 'undefined' ? "/api/subject/create" : "/api/subject/update", {
+        fetch(typeof (state.input.subject_id) === 'undefined' ? "/api/subject/create" : "/api/subject/update", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -197,6 +197,8 @@ export function CreateSubjectForm(props) {
                                 <p>{state.course.course_name}</p>
                                 <p className="mb-1"><small><strong>Duration</strong></small></p>
                                 <p>{state.course.course_duration}</p>
+                                <p className="mb-1"><small><strong>Course Fee</strong></small></p>
+                                <p >{state.course.course_fees}</p>
                             </div>
                         </div>
                     </div>

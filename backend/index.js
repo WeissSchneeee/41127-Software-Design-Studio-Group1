@@ -45,6 +45,14 @@ app.use("/api/course/create", require("./controller/couse_controller/CourseCreat
 app.use("/api/course/update", require("./controller/couse_controller/CourseUpdateController"));
 app.use("/api/course/delete", require("./controller/couse_controller/CourseDeleteController"));
 
+//Subject Controller
+app.use("/api/subject/list", require("./controller/subject_controller/SubjectListController"));
+app.use("/api/subject/detail", require("./controller/subject_controller/SubjectDetailController"));
+app.use("/api/subject/create", require("./controller/subject_controller/SubjectCreateController"));
+app.use("/api/subject/update", require("./controller/subject_controller/SubjectUpdateController"));
+app.use("/api/subject/delete", require("./controller/subject_controller/SubjectDeleteController"));
+
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });

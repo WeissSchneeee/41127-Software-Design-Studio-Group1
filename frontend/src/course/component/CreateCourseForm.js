@@ -94,25 +94,25 @@ export function CreateCourseForm(props) {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4"> Name</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="course_name" className="form-control" placeholder="Name" onChange={handleChange} value={state.input.course_name} />
+                                            <input type="text" id="course_name" className="form-control" placeholder="Name" onChange={handleChange} value={state.input.course_name} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4"> Duration</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="course_duration" className="form-control" placeholder="Duration" onChange={handleChange} value={state.input.course_duration} />
+                                            <input type="text" id="course_duration" className="form-control" placeholder="Duration" onChange={handleChange} value={state.input.course_duration} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4"> Credit Points</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="course_credit_points" className="form-control" placeholder="Credit Points" onChange={handleChange} value={state.input.course_credit_points} />
+                                            <input type="text" id="course_credit_points" className="form-control" placeholder="Credit Points" onChange={handleChange} value={state.input.course_credit_points} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Fees</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="course_fees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.course_fees} />
+                                            <input type="text" id="course_fees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.course_fees} required/>
                                         </div>
                                     </div>
                                     <div className="mb-3"></div>
