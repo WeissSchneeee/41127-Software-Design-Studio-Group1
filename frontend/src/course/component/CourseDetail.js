@@ -90,7 +90,7 @@ export function CourseDetail(props) {
 
                 <h2 className="mb-3">Subject List</h2>
                 <p>
-                    <IconButton title="Add Subject" onClick={() => navigate(`/subjectlist/${state.input.course_id}/add`)}><Add/></IconButton>
+                    <IconButton title="Create Subject" onClick={() => navigate(`/subjectlist/${state.input.course_id}/create`)}><Add/></IconButton>
                     <IconButton title="Delete Subject" onClick={() => navigate(`/subjectlist/${state.input.course_id}/delete`)}><Delete/></IconButton>
                 </p>
                 <div className="card mb-3">

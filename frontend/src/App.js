@@ -63,7 +63,7 @@ function App() {
         <Route path="update/:id" element={<CreateCourseForm />} />
       </Route>
       <Route path="/subjectlist/:course" element={<NavBar page="subjectlist" />}>
-        <Route path="add" element={<CreateSubjectForm />} />
+        <Route path="create" element={<CreateSubjectForm />} />
         <Route path="delete/:id" element={<SubjectDetail />} />
         <Route path="detail/:id" element = {<SubjectDetail/>}  />
         <Route path="update/:id" element={<CreateCourseForm />} />
