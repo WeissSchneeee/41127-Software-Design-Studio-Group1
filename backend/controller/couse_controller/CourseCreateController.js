@@ -40,7 +40,7 @@ const createNew = async (course_name, course_duration, course_credit_points, cou
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
                     console.log('err', err)
-                    return reject(null);
+                    return reject("Please check the input format");
                 } else {
                     console.log(`Course: ${newID} successfully created!`);
                     return resolve({newID: newID, course_name: course_name});
