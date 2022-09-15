@@ -4,20 +4,20 @@ const connection = require("../../index.js").connection;
 
 router.post("/", async (req, res) => {
     try {
-        const { course_id, course_name, course_duration, course_credit_points, course_fees } = req.body;
+        const { subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, course_id } = req.body;
         
         // update
-        const updated = await update(course_id, course_name, course_duration, course_credit_points, course_fees);
+        const updated = await update(subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, course_id);
         if (!updated) {
             return res.status(400).json({
                 status: false,
-                message: "Failed to update course!"
+                message: "Failed to update subject!"
             });
         }
         return res.status(200).json({
             status: true,
-            newid: updated.course_id,
-            message: "Successfully update course!"
+            subject_id: updated.subject_id,
+            message: "Successfully update subject!"
         });
     } catch (error) {
         console.log(error);
@@ -29,20 +29,22 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const update = async (course_id, course_name, course_duration, course_credit_points, course_fees) => {
+const update = async (subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, course_id) => {
     try {
         
         
-        const sql = `update course set course_name = $2, course_duration = $3, course_credit_points = $4, course_fees = $5 where course_id = $1;`
-        const newRow = [course_id, course_name, course_duration, course_credit_points, course_fees]
+        const sql = `UPDATE subject set subject_id = '${subject_id}', subject_name = '${subject_name}', pre_requisites = '${pre_requisites}', core_subjects = '${core_subjects}', anti_requisites = '${anti_requisites}', 
+        co_requisites = '${co_requisites}', scredit_points = '${scredit_points}', subject_descriptions = '${subject_descriptions}', subject_level = '${subject_level}', electives = '${electives}',
+        subject_fees = '${subject_fees}' WHERE course_id = '${course_id}';`;
+        //const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, course_id]
         return new Promise((resolve, reject) => {
-            connection.query(sql, newRow, async (err, result) => {
+            connection.query(sql, async (err, result) => {
                 if (err) {
                     console.log('err', err)
-                    return reject(null);
+                    return reject("fail to update");
                 } else {
-                    console.log(`Course: ${course_id} successfully created!`);
-                    return resolve({course_id: course_id, course_name: course_name});
+                    console.log(`Subject: ${subject_id} successfully updated!`);
+                    return resolve({subject_id: subject_id, subject_name: subject_name});
                 }
             });
         });

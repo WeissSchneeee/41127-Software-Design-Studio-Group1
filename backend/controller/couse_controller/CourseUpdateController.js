@@ -39,7 +39,7 @@ const update = async (course_id, course_name, course_duration, course_credit_poi
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
                     console.log('err', err)
-                    return reject(null);
+                    return reject("fail to update course");
                 } else {
                     console.log(`Course: ${course_id} successfully created!`);
                     return resolve({course_id: course_id, course_name: course_name});
