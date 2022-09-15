@@ -10,6 +10,8 @@ import { CourseDetail } from "./course/component/CourseDetail";
 import { CreateSubjectForm } from "./subject/component/CreateSubjectForm";
 import { SubjectDetail } from "./subject/component/SubjectDetail";
 import { SubjectList } from "./subject/component/SubjectList";
+import { AnnouncementList } from "./announcement/component/AnnouncementList";
+import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncement";
 
 export const getUserID = _ => {
   let token;
@@ -68,6 +70,10 @@ function App() {
         <Route path="detail/:id" element = {<SubjectDetail/>}  />
         <Route path="update/:id" element={<CreateCourseForm />} />
         <Route path="" element = {<SubjectList/>}  />
+      </Route>
+      <Route path="/announcementlist" element ={<NavBar page="announcementlist"/>}>
+        <Route path="" element = {<AnnouncementList/>} />
+        <Route path="create" element = {<CreateAnAnnouncement/>} />
       </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>

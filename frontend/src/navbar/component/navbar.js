@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Login, MeetingRoom, Storage } from '@mui/icons-material/';
+import { AccountCircle, Announcement, GolfCourse, Login, MeetingRoom, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -46,13 +46,19 @@ export const NavBar = (props) => {
                     {(userID === "none") && <a className={props.page === "signin" ? "active" : ""} href="/signin"><Login />Sign In</a>}
                     {
                         (userID !== "none") && (isAdmin(userType) || isStaff(userType)) && <>
-                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Storage />Course List</a>
+                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><GolfCourse />Course List</a>
                         </>
                     }
                     {
                         (userID !== "none") && isAdmin(userType) && <>
                             <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage />Account List</a>
                         </>
+                    }
+                    {
+                        (userID !== "none") && isAdmin(userType) && <>
+                            <a className={props.page === "announcementlist" ? "active" : ""} href = "/announcementlist"><Announcement />Post Announcements</a>
+                        </>
+
                     }
                     
                     {(userID !== "none") && accountMenu(props.page, userType)}
