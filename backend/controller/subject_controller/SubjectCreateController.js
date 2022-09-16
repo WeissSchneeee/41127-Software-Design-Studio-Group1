@@ -36,7 +36,8 @@ const createNew = async (subject_id, subject_name, pre_requisites, core_subjects
         //     return
         // }
         console.log("Continue");
-        const sql = `INSERT INTO subject VALUES('${subject_id}', '${subject_name}', '${pre_requisites}', '${core_subjects}', '${anti_requisites}', '${co_requisites}', '${scredit_points}', '${subject_descriptions}', '${subject_level}', '${electives}', '${subject_fees}');`;
+        console.log(`${course_id}`);
+        const sql = `INSERT INTO subject VALUES('${subject_id}', '${subject_name}', '${pre_requisites}', '${core_subjects}', '${anti_requisites}', '${co_requisites}', '${scredit_points}', '${subject_descriptions}', '${subject_level}', '${electives}', '${subject_fees}', '${course_id}');`;
         //const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, course_id]
         //eg `INSERT INTO student VALUES ('${userID}', '${dob}');`;
         return new Promise((resolve, reject) => {
