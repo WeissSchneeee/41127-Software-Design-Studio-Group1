@@ -8,12 +8,14 @@ import { CourseList } from "./course/component/CourseList";
 import { CreateCourseForm } from "./course/component/CreateCourseForm";
 import { CourseDetail } from "./course/component/CourseDetail";
 import { CreateSubjectForm } from "./subject/component/CreateSubjectForm";
-import { SubjectDetail } from "./subject/component/SubjectDetail";
+import { CourseListStudent } from "./student/course/CourseListStudent";
+import { CourseDetailStudent } from "./student/course/CourseDetailStudent";
 import { SubjectList } from "./subject/component/SubjectList";
-import { AnnouncementList } from "./announcement/component/AnnouncementList";
-import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncement";
-import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
-import {EnrolmentHomePage} from "./enrolment/component/EnrolmentHomePage";
+import { SubjectDetail } from "./subject/component/SubjectDetail";
+import { Dashboard } from "./student/dashboard/Dashboard";
+import { DashboardHowToUse } from "./student/dashboard/DashboardHowToUse";
+import { SubjectListStudent } from "./student/subject/SubjectListStudent";
+import { SubjectDetailStudent } from "./student/subject/SubjectDetailStudent";
 
 export const getUserID = _ => {
   let token;
@@ -66,21 +68,30 @@ function App() {
         <Route path="detail/:id" element={<CourseDetail />} />
         <Route path="update/:id" element={<CreateCourseForm />} />
       </Route>
-      <Route path="/subjectlist/:course" element={<NavBar page="subjectlist" />}>
+      <Route path="/subjectlist/" element={<NavBar page="subjectlist" />}>
+        <Route path="" element={<SubjectList />} />
         <Route path="create" element={<CreateSubjectForm />} />
-        <Route path="delete/:id" element={<SubjectDetail />} />
-        <Route path="detail/:id" element = {<SubjectDetail/>}  />
-        <Route path="update/:id" element={<CreateCourseForm />} />
-        <Route path="" element = {<SubjectList/>}  />
+        <Route path="update/:id" element={<CreateSubjectForm />} />
+        <Route path="detail/:id" element={<SubjectDetail />} />
       </Route>
-      <Route path="/announcementlist" element ={<NavBar page="announcementlist"/>}>
-        <Route path="" element = {<AnnouncementList/>} />
-        <Route path="create" element = {<CreateAnAnnouncement/>} />
+
+      <Route path="/student/courselist" element={<NavBar page="student/courselist" />}>
+        <Route path="" element={<CourseListStudent />} />
+        <Route path="detail/:id" element={<CourseDetailStudent />} />
       </Route>
-      <Route path="/enrolment" element ={<NavBar page="enrolment"/>}>
-        <Route path="" element = {<EnrolmentHomePage/>} />
-        <Route path="create" element = {<CreateEnrolmentForm/>} />
+      <Route path="/student/subjectlist" element={<NavBar page="student/subjectlist" />}>
+        <Route path="detail/:id" element={<SubjectDetailStudent />} />
+        <Route path="" element={<SubjectListStudent />} />
       </Route>
+      <Route path="/student/courselist" element={<NavBar page="student/courselist" />}>
+        <Route path="" element={<CourseListStudent />} />
+        <Route path="detail/:id" element={<CourseDetailStudent />} />
+      </Route>
+      <Route path="/student/dashboard" element={<NavBar page="student/dashboard" />}>
+        <Route path="howtouse" element={<DashboardHowToUse />} />
+        <Route path="" element={<Dashboard />} />
+      </Route>
+      
       <Route path="*" element={<NavBar />} />
     </Routes>
   );
