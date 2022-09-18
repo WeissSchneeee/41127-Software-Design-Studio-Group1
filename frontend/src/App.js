@@ -14,8 +14,8 @@ import { SubjectList } from "./subject/component/SubjectList";
 import { SubjectDetail } from "./subject/component/SubjectDetail";
 import { Dashboard } from "./student/dashboard/Dashboard";
 import { DashboardHowToUse } from "./student/dashboard/DashboardHowToUse";
-import { SubjectListStudent } from "./student/subject/SubjectListStudent";
-import { SubjectDetailStudent } from "./student/subject/SubjectDetailStudent";
+import { SubjectListStudent } from "./student/subject/subjectListStudent";
+import { SubjectDetailStudent } from "./student/subject/subjectDetailStudent";
 
 export const getUserID = _ => {
   let token;
