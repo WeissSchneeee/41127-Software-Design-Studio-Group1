@@ -13,7 +13,7 @@ try:
 
   cur = conn.cursor()
 
-
+  cur.execute('DROP TABLE IF EXISTS test_knn_subject')
 
   create_script = ''' CREATE TABLE IF NOT EXISTS test_knn_subject (
                       subject_id       varchar(10) PRIMARY KEY,
