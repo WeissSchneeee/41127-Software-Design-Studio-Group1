@@ -1,13 +1,18 @@
 from re import sub
 from sklearn.neighbors import KNeighborsClassifier
 import psycopg2
-conn = psycopg2.connect(
-    host="localhost",
-    database="suppliers",
-    user="postgres",
-    password="Abcd1234")
 
 
+try:
+  conn = psycopg2.connect(
+    host="ec2-34-207-12-160.compute-1.amazonaws.com",
+    database="d5daga22vac1v1",
+    user="fkqtzcrjkybizb",
+    password="041098df80146c8615cd856429f37d05afe722c42b88f5b728f790f4c6462746")
+
+  conn.close()
+except Exception as e:
+  print(e)
 
 
  # subjects in courseset: number of quiz, number of individual assignments, number of group assignments, has exam or not, study level(pre requisite), [similarity]
