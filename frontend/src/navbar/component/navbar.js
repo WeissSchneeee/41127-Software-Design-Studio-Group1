@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Announcement, GolfCourse, Login, MeetingRoom, School, Storage } from '@mui/icons-material/';
+import { AccountCircle, Book, Login, MeetingRoom, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -45,27 +45,24 @@ export const NavBar = (props) => {
                 <div className="topnav">
                     {(userID === "none") && <a className={props.page === "signin" ? "active" : ""} href="/signin"><Login />Sign In</a>}
                     {
-                        (userID !== "none") && (isAdmin(userType) || isStaff(userType)) && <>
-                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><GolfCourse />Course List</a>
+                        (userID !== "none") && isStaff(userType) && <>
+                            <a className={props.page === "subjectlist" ? "active" : ""} href="/subjectlist">Subject List</a>
+                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist">Course List</a>
                         </>
-                    }
-                    {
-                        (userID !== "none") && isAdmin(userType) && <>
-                            <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage />Account List</a>
-                        </>
-                    }
-                    {
-                        (userID !== "none") && isAdmin(userType) && <>
-                            <a className={props.page === "announcementlist" ? "active" : ""} href = "/announcementlist"><Announcement />Post Announcements</a>
-                        </>
-
                     }
                     {
                         (userID !== "none") && isStudent(userType) && <>
-                            <a className={props.page === "enrolment" ? "active" : ""} href = "/enrolment">< School/>Enrol in Subject</a>
+                            <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard">Dashboard</a>
+                            <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist">Course List</a>
+                            <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist">Subject List</a>
                         </>
-
                     }
+                    {
+                        (userID !== "none") && isAdmin(userType) && <>
+                            <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist">Account List</a>
+                        </>
+                    }
+                    
                     {(userID !== "none") && accountMenu(props.page, userType)}
                 </div>
             </header>
