@@ -1,6 +1,7 @@
 from re import sub
 from sklearn.neighbors import KNeighborsClassifier
 import psycopg2
+import psycopg2.extras
 
 
 try:
@@ -9,6 +10,31 @@ try:
     database="d5daga22vac1v1",
     user="fkqtzcrjkybizb",
     password="041098df80146c8615cd856429f37d05afe722c42b88f5b728f790f4c6462746")
+
+  cur = conn.cursor()
+
+  cur.execute('DROP TABLE IF EXISTS test_knn_subject')
+
+  create_script = ''' CREATE TABLE IF NOT EXISTS test_knn_subject (
+                      subject_id       varchar(10) PRIMARY KEY,
+                      subject_name     varchar(50) NOT NULL,
+                      quiz              int,
+                      individual_assign int,
+                      group_assign      int,
+                      exam              int,
+                      study_level       int 
+
+                  )'''
+
+  cur.execute(create_script)
+
+
+  insert_script = 'INSERT INTO test_knn_subject (subject_id, subject_name, quiz, individual_assign, group_assign, exam, study_level) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+  insert_value = ['12345', 'Design_Studio', 0, 2, 2, 0, 5]
+
+
+  cur.execute(insert_script, insert_value)
+  conn.commit()
 
   conn.close()
 except Exception as e:
