@@ -14,8 +14,12 @@ import { SubjectList } from "./subject/component/SubjectList";
 import { SubjectDetail } from "./subject/component/SubjectDetail";
 import { Dashboard } from "./student/dashboard/Dashboard";
 import { DashboardHowToUse } from "./student/dashboard/DashboardHowToUse";
-import { SubjectListStudent } from "./student/subject/subjectListStudent";
-import { SubjectDetailStudent } from "./student/subject/subjectDetailStudent";
+import { SubjectListStudent } from "./student/subject/SubjectListStudent";
+import { SubjectDetailStudent } from "./student/subject/SubjectDetailStudent";
+import { AnnouncementList } from "./announcement/component/AnnouncementList";
+import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncement";
+import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
+import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
 
 export const getUserID = _ => {
   let token;
@@ -74,6 +78,14 @@ function App() {
         <Route path="update/:id" element={<CreateSubjectForm />} />
         <Route path="detail/:id" element={<SubjectDetail />} />
       </Route>
+      <Route path="/announcementlist" element={<NavBar page="announcementlist" />}>
+        <Route path="" element={<AnnouncementList />} />
+        <Route path="create" element={<CreateAnAnnouncement />} />
+      </Route>
+      <Route path="/enrolment" element={<NavBar page="enrolment" />}>
+        <Route path="" element={<EnrolmentHomePage />} />
+        <Route path="create" element={<CreateEnrolmentForm />} />
+      </Route>
 
       <Route path="/student/courselist" element={<NavBar page="student/courselist" />}>
         <Route path="" element={<CourseListStudent />} />
@@ -91,7 +103,7 @@ function App() {
         <Route path="howtouse" element={<DashboardHowToUse />} />
         <Route path="" element={<Dashboard />} />
       </Route>
-      
+
       <Route path="*" element={<NavBar />} />
     </Routes>
   );
