@@ -45,9 +45,9 @@ export const NavBar = (props) => {
                 <div className="topnav">
                     {(userID === "none") && <a className={props.page === "signin" ? "active" : ""} href="/signin"><Login />Sign In</a>}
                     {
-                        (userID !== "none") && isStaff(userType) && <>
-                            <a className={props.page === "subjectlist" ? "active" : ""} href="/subjectlist">Subject List</a>
-                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist">Course List</a>
+                        (userID !== "none") && (isStaff(userType) || isAdmin(userType)) && <>
+                            <a className={props.page === "subjectlist" ? "active" : ""} href="/subjectlist"><Book/>Subject List</a>
+                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Book/>Course List</a>
                         </>
                     }
                     {
@@ -61,8 +61,7 @@ export const NavBar = (props) => {
                         (userID !== "none") && isAdmin(userType) && <>
                             <a className={props.page === "announcementlist" ? "active" : ""} href="/announcementlist"><Announcement />Post Announcements</a>
                             <a className={props.page === "enrolment" ? "active" : ""} href="/enrolment">< School />Enrol in Subject</a>
-                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Book/> Course List</a>
-                            <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage /> Account List</a>
+                            <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage />Account List</a>
                         </>
                     }
 
