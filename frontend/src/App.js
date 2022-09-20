@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, HashRouter, Swi, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./navbar/component/navbar";
 import { SignIn } from "./account/component/SignIn";
 import { Profile } from "./account/component/Profile";
@@ -20,6 +20,7 @@ import { AnnouncementList } from "./announcement/component/AnnouncementList";
 import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncement";
 import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
 import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
+import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
 
 export const getUserID = _ => {
   let token;
@@ -103,7 +104,9 @@ function App() {
         <Route path="howtouse" element={<DashboardHowToUse />} />
         <Route path="" element={<Dashboard />} />
       </Route>
-
+      <Route path="/student/enrollment" element={<NavBar page="student/enrollment" />}>
+        <Route path="" element={<StudentEnrollment />} />
+      </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>
   );

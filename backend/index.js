@@ -38,24 +38,26 @@ app.use("/api/createuser", require("./controller/account_controller/CreateUserCo
 app.use("/api/deletemultipleuser", require("./controller/account_controller/DeleteMultipleUserController"));
 app.use("/api/forgetpassword", require("./controller/account_controller/ForgetPasswordController"));
 
-//COURSE Controller
+// COURSE CONTROLLER APIs
 app.use("/api/course/list", require("./controller/couse_controller/CourseListController"));
 app.use("/api/course/detail", require("./controller/couse_controller/CourseDetailController"));
 app.use("/api/course/create", require("./controller/couse_controller/CourseCreateController"));
 app.use("/api/course/update", require("./controller/couse_controller/CourseUpdateController"));
 app.use("/api/course/delete", require("./controller/couse_controller/CourseDeleteController"));
 
-//Subject Controller
+// SUBJECT CONTROLLER APIs
 app.use("/api/subject/list", require("./controller/subject_controller/SubjectListController"));
 app.use("/api/subject/detail", require("./controller/subject_controller/SubjectDetailController"));
 app.use("/api/subject/create", require("./controller/subject_controller/SubjectCreateController"));
 app.use("/api/subject/update", require("./controller/subject_controller/SubjectUpdateController"));
 app.use("/api/subject/delete", require("./controller/subject_controller/SubjectDeleteController"));
 
-//Announcement Controller
+//ANNOUNCEMENT CONTROLLER APIs
 // app.use("/api/announcement/list", require("./controller/announcement_controller/announcementListController"));
 // app.use("/api/announcement/create", require("./controller/announcement_controller/announcementCreateController"));
 
+// ENROLLMENT CONTROLLER APIs
+app.use("/api/getenrollmentlist", require("./controller/enrollment_controller/GetStudentEnrollmentController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

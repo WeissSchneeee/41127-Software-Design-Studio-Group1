@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Announcement, Book, Login, MeetingRoom, School, Storage } from '@mui/icons-material/';
+import { AccountCircle, Announcement, Book, LibraryBooks, Login, MeetingRoom, School, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -53,8 +53,9 @@ export const NavBar = (props) => {
                     {
                         (userID !== "none") && isStudent(userType) && <>
                             <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard">Dashboard</a>
-                            <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist">Course List</a>
-                            <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist">Subject List</a>
+                            <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist"><Book/>Course List</a>
+                            <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist"><Book/>Subject List</a>
+                            <a className={props.page === "student/enrollment" ? "active" : ""} href="/student/enrollment"><LibraryBooks/>Enrollment</a>
                         </>
                     }
                     {
