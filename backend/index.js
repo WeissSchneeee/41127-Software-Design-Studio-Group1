@@ -52,6 +52,10 @@ app.use("/api/subject/create", require("./controller/subject_controller/SubjectC
 app.use("/api/subject/update", require("./controller/subject_controller/SubjectUpdateController"));
 app.use("/api/subject/delete", require("./controller/subject_controller/SubjectDeleteController"));
 
+//Announcement Controller
+// app.use("/api/announcement/list", require("./controller/announcement_controller/announcementListController"));
+// app.use("/api/announcement/create", require("./controller/announcement_controller/announcementCreateController"));
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

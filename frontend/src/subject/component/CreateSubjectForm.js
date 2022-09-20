@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, withRouter } from "react-router-dom";
-// import "../style/account.css";
+import "../style/account.css";
 
 
 export function CreateSubjectForm(props) {
