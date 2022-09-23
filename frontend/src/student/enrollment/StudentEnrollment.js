@@ -38,7 +38,7 @@ const enrollmentList = (enrollment) => {
             label: 'YEAR'
         },
         {
-            id: 'session',
+            id: 'type',
             numeric: false,
             label: 'SESSION'
         },
@@ -64,16 +64,16 @@ const enrollmentList = (enrollment) => {
         }
     ];
     const cellFormat = (handleClick, isSelected, index, row) => {
-        const isItemSelected = isSelected(row.subject_id);
+        const isItemSelected = isSelected(row.enrollment_id);
         const labelId = `enhanced-table-checkbox-${index}`;
         return(
             <TableRow
                 hover
-                onClick={(event) => handleClick(event, row.subject_id)}
+                onClick={(event) => handleClick(event, row.enrollment_id)}
                 role="checkbox"
                 aria-checked={isItemSelected}
                 tabIndex={-1}
-                key={row.subject_id}
+                key={row.enrollment_id}
                 selected={isItemSelected}
             >
                 <TableCell className="table-cell" padding="checkbox">
@@ -94,7 +94,7 @@ const enrollmentList = (enrollment) => {
                 >
                 {row.year}
                 </TableCell>
-                <TableCell className="table-cell" align="center">{row.session}</TableCell>
+                <TableCell className="table-cell" align="center">{row.type} Session</TableCell>
                 <TableCell className="table-cell" align="center">{row.subject_id}</TableCell>
                 <TableCell className="table-cell" align="center">{row.subject_name}</TableCell>
                 <TableCell className="table-cell" align="center">{row.scredit_points}</TableCell>
