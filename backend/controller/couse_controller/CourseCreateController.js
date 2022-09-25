@@ -1,14 +1,15 @@
 const express = require("express");
+const { addErrorLog } = require("../../index.js");
 const router = express.Router();
 const connection = require("../../index.js").connection;
 
 router.post("/", async (req, res) => {
     try {
-        const { course_name, course_duration, course_credit_points, course_fees } = req.body;
-        
+        const { course_id, course_name, course_duration, course_credit_points, course_fees } = req.body;
+
         // create new
-        const inserted = await createNew(course_name, course_duration, course_credit_points, course_fees);
-        if (!inserted) {
+        const inserted = await createNew(course_id, course_name, course_duration, course_credit_points, course_fees);
+        if (!inserted.newID) {
             return res.status(400).json({
                 status: false,
                 message: "Failed to create new course!"
@@ -21,34 +22,45 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.toString()
         });
     }
 });
 module.exports = router;
 
-const createNew = async (course_name, course_duration, course_credit_points, course_fees) => {
+const createNew = async (course_id, course_name, course_duration, course_credit_points, course_fees) => {
     try {
-        
-        const newID = await generateID();
-        console.log("newid", newID)
-        const sql = `insert into course(course_id, course_name, course_duration, course_credit_points, course_fees) values ($1, $2, $3, $4, $5);`
-        const newRow = [newID, course_name, course_duration, course_credit_points, course_fees]
-        return new Promise((resolve, reject) => {
-            connection.query(sql, newRow, async (err, result) => {
-                if (err) {
-                    console.log('err', err)
-                    return reject("Please check the input format");
-                } else {
-                    console.log(`Course: ${newID} successfully created!`);
-                    return resolve({newID: newID, course_name: course_name});
-                }
+
+        // const newID = await generateID();
+        const newID = course_id;
+
+        const isExisteds = await isExisted("course_id", newID);
+        if (isExisteds) {
+            console.log('err', `Course ID ${newID} has been exists`)
+            return `Course ID ${newID} has been exists`
+        } else {
+            const sql = `insert into course(course_id, course_name, course_duration, course_credit_points, course_fees) values ($1, $2, $3, $4, $5);`
+            const newRow = [newID, course_name, course_duration, course_credit_points, course_fees]
+            return new Promise((resolve, reject) => {
+                connection.query(sql, newRow, async (err, result) => {
+                    if (err) {
+                        console.log('err', err)
+                        return reject(err.message);
+                    } else {
+                        console.log(`Course: ${newID} successfully created!`);
+                        return resolve({ newID: newID, course_name: course_name });
+                    }
+                });
             });
-        });
+        }
+
+
     } catch (error) {
         console.log(error);
+        addErrorLog(req.originalUrl + "_createnew", error.toString())
     }
 };
 const generateID = async () => {
@@ -57,7 +69,7 @@ const generateID = async () => {
     // User ID format: UNNNCCC
     let newID;
     do {
-        newID = String("CRS") + numbers[randomNumber(10)] + numbers[randomNumber(10)] + numbers[randomNumber(10)] + characters[randomNumber(26)] + characters[randomNumber(26)]+ characters[randomNumber(26)];
+        newID = String("CRS") + numbers[randomNumber(10)] + numbers[randomNumber(10)] + numbers[randomNumber(10)] + characters[randomNumber(26)] + characters[randomNumber(26)] + characters[randomNumber(26)];
         newID = String(newID).toUpperCase();
     } while (await isExisted("course_id", newID));
     return newID;

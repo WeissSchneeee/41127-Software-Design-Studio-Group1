@@ -7,8 +7,7 @@ router.post("/", async (req, res) => {
         const sql = `SELECT * FROM course where course_id = $1`;
         connection.query(sql, [req.body.id], async (err, result) => {
             if (err) {
-                console.log(err);
-                addErrorLog('query', JSON.stringify(err))
+                console.log(err);                
                 return res.status(400).json({
                     status: false,
                     message: err
@@ -30,10 +29,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog('system', JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.toString()
         });
     }
 });

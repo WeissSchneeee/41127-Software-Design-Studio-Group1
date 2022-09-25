@@ -1,4 +1,5 @@
 const express = require("express");
+const { addErrorLog } = require("../../index.js");
 const router = express.Router();
 const connection = require("../../index.js").connection;
 
@@ -29,6 +30,7 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        addErrorLog(req.originalUrl + "", JSON.stringify(error))
         return res.status(400).json({
             status: false,
             message: error

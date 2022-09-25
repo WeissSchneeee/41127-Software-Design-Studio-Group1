@@ -1,4 +1,5 @@
 const express = require("express");
+const { addErrorLog } = require("../../index.js");
 const router = express.Router();
 const connection = require("../../index.js").connection;
 
@@ -21,9 +22,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error.message
+            message: error.toString()
         });
     }
 });
@@ -58,6 +60,7 @@ const add = async (course_id, subject_id) => {
 
     } catch (error) {
         console.log(error);
+        addErrorLog(req.originalUrl + "_add", error.toString())
     }
 };
 
