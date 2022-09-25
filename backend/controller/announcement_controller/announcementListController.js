@@ -20,12 +20,14 @@ router.post("/", async (req, res) => {
                 for(let i = 0; i < result.rows.length; ++i){
                     const data = result.rows[i];
                     console.log(data);
+                    let date = new Date(data.announcement_date);
+                    date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"});
                     const announcement = {
-                    announcement_id: data.announcement_id,
-                    announcement_title: data.announcement_title,
-                    //announcement_description: data.announcement_description,
-                    announcement_date: data.announcement_date                   
-                }
+                        announcement_id: data.announcement_id,
+                        announcement_title: data.announcement_title,
+                        //announcement_description: data.announcement_description,
+                        announcement_date: date
+                    }
                 announcements.push(announcement)
 
                     // user_id: userID,

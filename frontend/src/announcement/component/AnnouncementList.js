@@ -4,7 +4,7 @@ import { MainTable } from "../../figures/components/MainTable";
 import { getUserID } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { CreateAnAnnouncement } from "./CreateAnAnnouncement";
-import { Edit, Search } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 
 export const AnnouncementList = (props) => {
     const [userID, setUserID] = useState();
@@ -38,17 +38,14 @@ export const AnnouncementList = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-            },
-            // body: JSON.stringify({
-            //     userID: userID
-            // })
+            }
         })
             .then((res) => { return res.json(); })
             .then((data) => {
                 if (data.status) {
                     setState(prevState => ({
                         ...prevState,
-                        data: data.announcement
+                        data: data.announcements
                     }))
                 }
                 setLoading(false)
@@ -143,9 +140,9 @@ export const AnnouncementList = (props) => {
                 >
                     {row.announcement_id}
                 </TableCell>
-                <TableCell className="table-cell" align="center">{row.announcement_id}</TableCell>
                 <TableCell className="table-cell" align="center">{row.announcement_title}</TableCell>
                 <TableCell className="table-cell" align="center">{row.announcement_date}</TableCell>
+                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/`)}><Edit /></IconButton></TableCell>
             </TableRow>
         );
     };
