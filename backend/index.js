@@ -44,6 +44,8 @@ app.use("/api/course/detail", require("./controller/couse_controller/CourseDetai
 app.use("/api/course/create", require("./controller/couse_controller/CourseCreateController"));
 app.use("/api/course/update", require("./controller/couse_controller/CourseUpdateController"));
 app.use("/api/course/delete", require("./controller/couse_controller/CourseDeleteController"));
+app.use("/api/course/addsubject", require("./controller/couse_controller/CourseAddSubjectController"));
+app.use("/api/course/deletesubject", require("./controller/couse_controller/CourseDeleteSubjectController"));
 
 // SUBJECT CONTROLLER APIs
 app.use("/api/subject/list", require("./controller/subject_controller/SubjectListController"));
