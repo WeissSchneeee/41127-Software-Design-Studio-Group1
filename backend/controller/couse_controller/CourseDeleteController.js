@@ -27,10 +27,10 @@ router.post("/", async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", error.toString())
+        addErrorLog(req.originalUrl + "", error.toString())    
         return res.status(400).json({
             status: false,
-            message: error.toString()
+            message: error.message
         });
     }
 });

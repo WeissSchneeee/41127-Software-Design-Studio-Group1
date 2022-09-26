@@ -7,10 +7,11 @@ router.post("/", async (req, res) => {
         const sql = `SELECT * FROM course where course_id = $1`;
         connection.query(sql, [req.body.id], async (err, result) => {
             if (err) {
-                console.log(err);                
+                console.log(err);   
+                addErrorLog(req.originalUrl + "", error.toString())             
                 return res.status(400).json({
                     status: false,
-                    message: err
+                    message: err.message
                 });
             } else {
                 if (result.rowCount > 0) {
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
         addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error.toString()
+            message: error.message
         });
     }
 });

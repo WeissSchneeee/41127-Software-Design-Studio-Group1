@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
         await connection.query(sql, [list], async (err, result) => {
             if (err) {
                 console.log('err', err)
+                addErrorLog(req.originalUrl + "", err.toString())
                 return res.status(400).json({
                     status: false,
                     message: "Failed to delete subject!"
@@ -27,10 +28,10 @@ router.post("/", async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.message
         });
     }
 });

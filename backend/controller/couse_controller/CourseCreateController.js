@@ -22,10 +22,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", error.toString())
+        addErrorLog(req.originalUrl + "", error.toString())    
         return res.status(400).json({
             status: false,
-            message: error.toString()
+            message: error.message
         });
     }
 });
@@ -48,7 +48,7 @@ const createNew = async (course_id, course_name, course_duration, course_credit_
                 connection.query(sql, newRow, async (err, result) => {
                     if (err) {
                         console.log('err', err)
-                        return reject(err.message);
+                        return reject(err);
                     } else {
                         console.log(`Course: ${newID} successfully created!`);
                         return resolve({ newID: newID, course_name: course_name });
@@ -60,7 +60,7 @@ const createNew = async (course_id, course_name, course_duration, course_credit_
 
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "_createnew", error.toString())
+        addErrorLog(req.originalUrl + "", error.toString())    
     }
 };
 const generateID = async () => {

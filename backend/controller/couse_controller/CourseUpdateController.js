@@ -22,10 +22,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.message
         });
     }
 });
@@ -40,7 +40,7 @@ const update = async (last_id, course_id, course_name, course_duration, course_c
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
                     console.log('err', err)
-                    return reject(err.message);
+                    return reject(err);
                 } else {
                     console.log(`Course: ${course_id} successfully updated!`);
                     return resolve({course_id: course_id, course_name: course_name});
@@ -49,7 +49,7 @@ const update = async (last_id, course_id, course_name, course_duration, course_c
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "_update", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "_update", error.toString())
     }
 };
 

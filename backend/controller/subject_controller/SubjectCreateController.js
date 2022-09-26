@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
             message: error.message
@@ -39,7 +39,7 @@ const createNew = async (subject_id, subject_name, pre_requisites, core_subjects
             return "Please fill subject id!"
         }
 
-        const sql = `insert into subject("subject_id", "subject_name", "pre_requisites", "core_subjects", "anti_requisites", "co_requisites", "scredit_points", "subject_descriptions", "subject_level", "electives", "subjectFees") values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);`
+        const sql = `insert into subject("subject_id", "subject_name", "pre_requisites", "core_subjects", "anti_requisites", "co_requisites", "scredit_points", "subject_descriptions", "subject_level", "electives", "subject_fees") values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);`
         const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees]
         
         return new Promise((resolve, reject) => {
@@ -54,7 +54,7 @@ const createNew = async (subject_id, subject_name, pre_requisites, core_subjects
             });
         });
     } catch (error) {
-        addErrorLog(req.originalUrl + "_createnew", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "_createnew", error.toString())
         console.log(error);
     }
 };

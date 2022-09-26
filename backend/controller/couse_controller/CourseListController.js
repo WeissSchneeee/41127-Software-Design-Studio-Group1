@@ -9,9 +9,10 @@ router.post("/", async (req, res) => {
         connection.query(sql, async (err, result) => {
             if(err){
                 console.log(err);
+                addErrorLog(req.originalUrl + "", error.toString())
                 return res.status(400).json({
                     status: false,
-                    message: err
+                    message: err.message
                 });
             }else{
                 return res.status(200).json({
@@ -24,7 +25,7 @@ router.post("/", async (req, res) => {
         addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error.toString()
+            message: error.message
         });
     }
 });

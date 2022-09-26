@@ -9,9 +9,10 @@ router.post("/", async (req, res) => {
         connection.query(sql, [req.body.id], async (err, result) => {
             if (err) {
                 console.log(err);
+                addErrorLog(req.originalUrl + "", err.toString())
                 return res.status(400).json({
                     status: false,
-                    message: err
+                    message: err.message
                 });
             } else {
                 if (result.rowCount > 0) {
@@ -30,10 +31,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.message
         });
     }
 });
