@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, withRouter } from "react-router-dom";
-//import "../style/account.css";
+// import "../style/account.css";
 
 
 export function CreateSubjectForm(props) {
 
     const [state, setState] = useState({
-        course: {},
+        last_input: {},
         input: {}
     })
     const [submitting, setSubmitting] = useState(false)
@@ -23,38 +23,12 @@ export function CreateSubjectForm(props) {
         }))
 
     }
-    const { course, id } = useParams()
+    const { id } = useParams()
 
-    useEffect(() => {
-        loadCourseData()
-    }, [])
+    
     useEffect(() => {
         if (id) loadSingleData()
     }, [id])
-
-
-    const loadCourseData = () => {
-
-        setSubmitting(true)
-        fetch("/api/course/detail", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id: course })
-        })
-            .then((res) => { return res.json(); })
-            .then((data) => {
-                if (data.status) {
-                    setState(prevState => ({
-                        ...prevState,
-                        course: data.data
-                    }))
-                    document.title = "Create New Subject of " + data.data.course_name
-                }
-                setSubmitting(false)
-            });
-    }
 
     const loadSingleData = () => {
 
@@ -69,9 +43,11 @@ export function CreateSubjectForm(props) {
             .then((res) => { return res.json(); })
             .then((data) => {
                 if (data.status) {
+                    data.data.last_id = data.data.subject_id
                     setState(prevState => ({
                         ...prevState,
-                        input: data.data
+                        input: data.data,
+                        last_input: data.data
                     }))
                     document.title = "Update Subject : " + data.data.subject_name
                 }
@@ -82,7 +58,7 @@ export function CreateSubjectForm(props) {
     const submit = (e) => {
         e.preventDefault()
         setSubmitting(true)
-        fetch(typeof (state.input.subject_id) === 'undefined' ? "/api/subject/create" : "/api/subject/create", {
+        fetch(typeof (state.last_input.subject_id) === 'undefined' ? "/api/subject/create" : "/api/subject/update", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -91,11 +67,11 @@ export function CreateSubjectForm(props) {
         })
             .then((res) => { return res.json(); })
             .then((data) => {
+                setSubmitting(false)
                 alert(data.message);
                 if (data.status) {
                     closeForm()
                 }
-                setSubmitting(false)
             });
 
     }
@@ -107,7 +83,7 @@ export function CreateSubjectForm(props) {
     return (
         <section>
             <div className="container">
-                <h2 className="mb-3">{typeof (state.input.subject_id) === 'undefined' ? 'Create New Subject' : `Create Subject : ${state.input.subject_name}`}</h2>
+                <h2 className="mb-3">{typeof (state.last_input.subject_id) === 'undefined' ? 'Create New Subject' : `Update Subject : ${state.last_input.subject_name}`}</h2>
                 <div className="row">
                     <div className="col-12 col-md-8">
                         <div className="card">
@@ -116,25 +92,25 @@ export function CreateSubjectForm(props) {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Subject ID</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subject_id" className="form-control" placeholder="ID" onChange={handleChange} value={state.input.subject_id} />
+                                            <input type="text" id="subject_id" className="form-control" placeholder="ID" onChange={handleChange} value={state.input.subject_id} required />
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Name</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subject_name" className="form-control" placeholder="Name" onChange={handleChange} value={state.input.subject_name} />
+                                            <input type="text" id="subject_name" className="form-control" placeholder="Name" onChange={handleChange} value={state.input.subject_name} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Pre-Requisites</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="pre_requisites" className="form-control" placeholder="Pre Requisites" onChange={handleChange} value={state.input.pre_requisites} />
+                                            <input type="text" id="pre_requisites" className="form-control" placeholder="Pre Requisites" onChange={handleChange} value={state.input.pre_requisites}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Core Subject</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="core_subjects" className="form-control" placeholder="Core Subject" onChange={handleChange} value={state.input.core_subjects} />
+                                            <input type="text" id="core_subjects" className="form-control" placeholder="Core Subject" onChange={handleChange} value={state.input.core_subjects}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
@@ -146,13 +122,13 @@ export function CreateSubjectForm(props) {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Co-Requisites</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="co_requisites" className="form-control" placeholder="Co-Requisites" onChange={handleChange} value={state.input.co_requisites} />
+                                            <input type="text" id="co_requisites" className="form-control" placeholder="Co-Requisites" onChange={handleChange} value={state.input.co_requisites}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Credit Points</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="scredit_points" className="form-control" placeholder="Credit Points" onChange={handleChange} value={state.input.scredit_points} />
+                                            <input type="text" id="scredit_points" className="form-control" placeholder="Credit Points" onChange={handleChange} value={state.input.scredit_points} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
@@ -164,19 +140,23 @@ export function CreateSubjectForm(props) {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Level</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subject_level" className="form-control" placeholder="Level" onChange={handleChange} value={state.input.subject_level} />
+                                            <select id="subject_level" value={state.input.subject_level} className="form-control form-select" onChange={handleChange} required>
+                                                <option value="">- select -</option>
+                                                <option value="undergraduate">Undergraduate</option>
+                                                <option value="postgraduate">Postgraduate</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Electives</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="electives" className="form-control" placeholder="Electives" onChange={handleChange} value={state.input.electives} />
+                                            <input type="text" id="electives" className="form-control" placeholder="Electives" onChange={handleChange} value={state.input.electives}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Fees</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subject_fees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.subject_fees} />
+                                            <input type="text" id="subjectFees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.subjectFees}/>
                                         </div>
                                     </div>
                                     <div className="mb-3"></div>
@@ -185,20 +165,6 @@ export function CreateSubjectForm(props) {
                                         <button type="button" className="btn-lg" onClick={closeForm} disabled={submitting}>Cancel</button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="mb-1"><small><strong>Course Id</strong></small></p>
-                                <p>{state.course.course_id}</p>
-                                <p className="mb-1"><small><strong>Name</strong></small></p>
-                                <p>{state.course.course_name}</p>
-                                <p className="mb-1"><small><strong>Duration</strong></small></p>
-                                <p>{state.course.course_duration}</p>
-                                <p className="mb-1"><small><strong>Course Fee</strong></small></p>
-                                <p >{state.course.course_fees}</p>
                             </div>
                         </div>
                     </div>

@@ -22,10 +22,10 @@ router.post("/", async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "", JSON.stringify(error))
+        addErrorLog(req.originalUrl + "", error.toString())
         return res.status(400).json({
             status: false,
-            message: error
+            message: error.toString()
         });
     }
 });
@@ -38,22 +38,24 @@ const update = async (last_id, subject_id, subject_name, pre_requisites, core_su
             return
         }
 
-        const sql = `update subject set subject_id = $1, subject_name = $2, pre_requisites = $3, core_subjects = $4, anti_requisites = $5, co_requisites = $6, scredit_points = $7, subject_descriptions = $8, subject_level = $9, electives = $10, "subjectFees" = $11 where subject_id = $12`
+        const sql = `update subject set subject_id = $1, subject_name = $2, pre_requisites = $3, core_subjects = $4, anti_requisites = $5, co_requisites = $6, scredit_points = $7, subject_descriptions = $8, subject_level = $9, electives = $10, "subjectfees" = $11 where subject_id = $12`
         const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, last_id]
         return new Promise((resolve, reject) => {
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
                     console.log('err', err)
-                    return reject(null);
+                    return reject(err);
                 } else {
-                    console.log(`Course: ${subject_id} successfully created!`);
+                    console.log(`Course: ${subject_id} successfully updated!`);
                     return resolve({ subject_id: subject_id, subject_name: subject_name });
                 }
             });
         });
     } catch (error) {
         console.log(error);
-        addErrorLog(req.originalUrl + "_update", JSON.stringify(error))
+        if (error) {
+            addErrorLog(req.originalUrl + "_update", error.toString())
+        }
     }
 };
 

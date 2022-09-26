@@ -67,12 +67,6 @@ export const SubjectList = (props) => {
                 label: 'Subject Name',
             },
             {
-                id: 'subject_duration',
-                numeric: false,
-                disablePadding: false,
-                label: 'Duration',
-            },
-            {
                 id: 'subject_credit_points',
                 numeric: true,
                 disablePadding: false,
