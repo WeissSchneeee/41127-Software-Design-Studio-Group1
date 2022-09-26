@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
                                             ((String(data.user_type).toLowerCase() === 'e') ? await getStaffData(userID) : await getStudentData(userID));
                         let dob = (String(data.user_type).toLowerCase() === 's') ? new Date(uniqueData.date_of_birth) : new Date();
                         dob = new Date(dob.getTime() - (dob.getTimezoneOffset() * 60000)).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"});
-                        // dob = dob.substring(0, 10);
                         const user = {
                             user_id: userID,
                             email_address: String(data.email_address).toLowerCase(),

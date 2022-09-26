@@ -1,58 +1,92 @@
-/*import React, { useEffect, useState } from "react";
-//import "../style/account.css";
-import { getUserID } from "../../App";
-import { TableCell, TableRow, Checkbox } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { TableCell, TableRow, Checkbox, IconButton } from "@mui/material";
 import { MainTable } from "../../figures/components/MainTable";
-import { CreateAnAnnoucement } from "./CreateAnAnnouncement";
+import { getUserID } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { CreateAnAnnouncement } from "./CreateAnAnnouncement";
+import { Edit } from "@mui/icons-material";
 
-export const AnnouncementList = _ => {
+export const AnnouncementList = (props) => {
     const [userID, setUserID] = useState();
-    const [users, setUsers] = useState([]);
+    const [state, setState] = useState({
+        data: []
+    })
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        try{
+        try {
             getUserID().then(res => setUserID(res));
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     }, []);
+
     useEffect(() => {
-        try{
-            if(userID != null && userID !== "none") getUsers(userID, setUsers);
-        }catch(error){
+        try {
+            if (userID != null && userID !== "none") getEnrollment();
+        } catch (error) {
             console.log(error);
         }
     }, [userID]);
 
-    if(userID === "none") return window.location.href = "/signin";
-    return(
-        <section>
-            {CreateAnAnnoucement(users, setUsers)}
-            {AnnouncementList(users, userID, setUsers)}
-        </section>
-    );
-};
-const announcementList = (users, userID, setUsers) => {
-    const columns = [
-        {
-            id: 'announcement_title',
-            numeric: false,
-            disablePadding: true,
-            label: 'USER ID',
-        },
-        {
-            id: 'user_type',
-            numeric: false,
-            disablePadding: false,
-            label: 'USER TYPE',
-        }
-    ]
-    const createAnnouncement = _ => {
-        document.getElementById("createAnAnnouncement").style.display = "block";
-    };
-    const deleteUser = (selected) => {
-        try{
-            fetch("/api/deletemultipleuser", {
+    if (userID === "none") return window.location.href = "/signin";
+
+    const getEnrollment = () => {
+        setLoading(true)
+        fetch("/api/announcement/list", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then((res) => { return res.json(); })
+            .then((data) => {
+                if (data.status) {
+                    setState(prevState => ({
+                        ...prevState,
+                        data: data.announcements
+                    }))
+                }
+                setLoading(false)
+
+            });
+    }
+
+    const AnnouncementTable = () => {
+        const columns = [
+            {
+                id: 'announcement_id',
+                numeric: false,
+                disablePadding: true,
+                label: 'Announcement Id',
+            },
+            {
+                id: 'announcement_title',
+                numeric: false,
+                disablePadding: false,
+                label: 'Announcement Title',
+            },
+            {
+                id: 'announcement_date',
+                numeric: false,
+                disablePadding: false,
+                label: 'Date',
+            },
+            {
+                id: 'edit',
+                numeric: true,
+                disablePadding: false,
+                label: 'Action',
+            },
+        ]
+        const handleCreate = _ => {
+            navigate(`/announcementlist/create`)
+        };
+
+
+        const handleDelete = (selected) => {
+            fetch("/api/announcement/delete", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -61,74 +95,65 @@ const announcementList = (users, userID, setUsers) => {
                     list: selected
                 })
             })
-                .then((res) => { return res.json(); } )
+                .then((res) => { return res.json(); })
                 .then((data) => {
-                    alert(data.message);
-                    if(data.status){
-                        getUsers(userID, setUsers)
+                    if (data.status) {
+                        getEnrollment()
                     }
+                    setLoading(false)
+
                 });
-        }catch(error){
-            console.log(error);
         }
+
+        return (
+            MainTable(columns, state.data, cellFormat, "Announcement List", "New Announcement", handleCreate, "Delete Announcement", handleDelete)
+        );
     };
-    return(
-        MainTable(columns, users, cellFormat, "ACCOUNT DATABASE", "New User", createUser,"Delete User", deleteUser)
-    );
-};
-const cellFormat = (handleClick, isSelected, index, row) => {
-    const isItemSelected = isSelected(row.user_id);
-    const labelId = `enhanced-table-checkbox-${index}`;
-    return(
-        <TableRow
-            hover
-            onClick={(event) => handleClick(event, row.user_id)}
-            role="checkbox"
-            aria-checked={isItemSelected}
-            tabIndex={-1}
-            key={row.user_id}
-            selected={isItemSelected}
-        >
-            <TableCell className="table-cell" padding="checkbox">
-                <Checkbox
-                    color="primary"
-                    checked={isItemSelected}
-                    inputProps={{
-                    'aria-labelledby': labelId,
-                    }}
-                />
-            </TableCell>
-            <TableCell
-                className="table-cell" 
-                component="th"
-                id={labelId}
-                scope="row"
-                padding="none"
+    const cellFormat = (handleClick, isSelected, index, row) => {
+        const isItemSelected = isSelected(row.announcement_id);
+        const labelId = `enhanced-table-checkbox-${index}`;
+        return (
+            <TableRow
+                hover
+                role="checkbox"
+                aria-checked={isItemSelected}
+                tabIndex={-1}
+                key={row.annoucement_id}
+                selected={isItemSelected}
             >
-            {row.user_id}
-            </TableCell>
-            <TableCell className="table-cell" align="center">{row.user_type}</TableCell>
-            <TableCell className="table-cell" align="center">{row.role}</TableCell>
-            <TableCell className="table-cell" align="center">{row.email_address}</TableCell>
-            <TableCell className="table-cell" align="center">{row.first_name}</TableCell>
-            <TableCell className="table-cell" align="center">{row.last_name}</TableCell>
-            <TableCell className="table-cell" align="center">{row.contact_number}</TableCell>
-            <TableCell className="table-cell" align="center">{row.dob}</TableCell>
-        </TableRow>
+                <TableCell className="table-cell" padding="checkbox">
+                    <Checkbox
+                        color="primary"
+                        checked={isItemSelected}
+                        inputProps={{
+                            'aria-labelledby': labelId,
+                        }}
+                        onClick={(event) => handleClick(event, row.annoucement_id)}
+                    />
+                </TableCell>
+                <TableCell
+                    className="table-cell"
+                    component="th"
+                    id={labelId}
+                    scope="row"
+                    padding="none"
+                >
+                    {row.announcement_id}
+                </TableCell>
+                <TableCell className="table-cell" align="center">{row.announcement_title}</TableCell>
+                <TableCell className="table-cell" align="center">{row.announcement_date}</TableCell>
+                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/`)}><Edit /></IconButton></TableCell>
+            </TableRow>
+        );
+    };
+
+    return (
+        <section>
+            {
+                loading ? <div className="container">Loading...</div> : <AnnouncementTable />
+            }
+
+        </section>
     );
 };
-const getUsers = async (userID, setUsers) => {
-    const res = await fetch("/api/getalluser", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            userID: userID
-        })
-    });
-    const data = await res.json();
-    if(data.status){
-        setUsers(data.users);
-    }
-};*/
+
