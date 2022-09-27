@@ -111,7 +111,7 @@ export const SubjectList = (props) => {
         }
 
         return (
-            MainTable(columns, state.data, cellFormat, "Subject List", "New Subject", handleCreate, "Delete Course", handleDelete)
+            MainTable(columns, state.data, cellFormat, "Subject List", "New Subject", handleCreate, "Delete Subject", handleDelete)
         );
     };
     const cellFormat = (handleClick, isSelected, index, row) => {
