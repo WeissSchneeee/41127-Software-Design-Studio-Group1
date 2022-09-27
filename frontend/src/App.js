@@ -21,6 +21,7 @@ import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncem
 import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
 import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
 import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
+import { SysLogList } from "./syslog/SysLogList";
 
 export const getUserID = _ => {
   let token;
@@ -106,6 +107,9 @@ function App() {
       </Route>
       <Route path="/student/enrollment" element={<NavBar page="student/enrollment" />}>
         <Route path="" element={<StudentEnrollment />} />
+      </Route>
+      <Route path="/syslog/" element={<NavBar page="syslog" />}>
+        <Route path="" element={<SysLogList />} />
       </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>

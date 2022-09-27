@@ -61,11 +61,16 @@ app.use("/api/announcement/create", require("./controller/announcement_controlle
 // ENROLLMENT CONTROLLER APIs
 app.use("/api/getenrollmentlist", require("./controller/enrollment_controller/GetStudentEnrollmentController"));
 
+// SYS LOG CONTROLLER APIs
+app.use("/api/syslog/list", require("./controller/syslog_controller/SyslogListController"));
+app.use("/api/syslog/delete", require("./controller/syslog_controller/SyslogDeleteController"));
+
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
 app.on('error', (err) => {
-    addErrorLog('app error', JSON.stringify(err))
+    // addErrorLog('app error', JSON.stringify(err))
     console.log(err.message);
 });
