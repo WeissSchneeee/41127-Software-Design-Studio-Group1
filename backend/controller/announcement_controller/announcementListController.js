@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
                 const readData = async (announcements) => {
                 for(let i = 0; i < result.rows.length; ++i){
                     const data = result.rows[i];
-                    console.log(data);
+                    //console.log(data);
                     let date = new Date(data.announcement_date);
                     date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"});
                     const announcement = {
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
                 
             };
                 await(readData(announcements));
-                console.log(announcements);
+                //console.log(announcements);
                 return res.status(200).json({
                     status: true,
                     announcements: announcements

@@ -118,7 +118,7 @@ export const AnnouncementList = (props) => {
                 role="checkbox"
                 aria-checked={isItemSelected}
                 tabIndex={-1}
-                key={row.annoucement_id}
+                key={row.announcement_id}
                 selected={isItemSelected}
             >
                 <TableCell className="table-cell" padding="checkbox">
@@ -128,7 +128,7 @@ export const AnnouncementList = (props) => {
                         inputProps={{
                             'aria-labelledby': labelId,
                         }}
-                        onClick={(event) => handleClick(event, row.annoucement_id)}
+                        onClick={(event) => handleClick(event, row.announcement_id)}
                     />
                 </TableCell>
                 <TableCell
