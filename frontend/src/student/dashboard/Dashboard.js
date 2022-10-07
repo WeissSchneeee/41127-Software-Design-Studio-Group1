@@ -1,5 +1,6 @@
-import { Search } from "@mui/icons-material";
-import { Icon } from "@mui/material";
+import { CallOutlined, QuestionAnswer, QuestionMark, Search } from "@mui/icons-material";
+import { Dialog, Icon } from "@mui/material";
+import img from "./../../images/iStock-131364744.jpg"
 
 export const Dashboard = () => {
 
@@ -7,22 +8,39 @@ export const Dashboard = () => {
 
     return (
         <div className="container">
-            <div className="card mt-5">
-                <div className="card-body">
-                    <h1 class="display-4">Are you new??</h1>
-                    <p class="lead">‘This website helps you to find a <strong>suitable course for you</strong> and also the course and subject information.</p>
-                    <hr class="my-4" />
-                    <p>Let find out how it works!</p>
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href={`/student/dashboard/howtouse`} role="button">Learn more</a>
-                    </p>
+            <div className="row mt-5 align-items-center">
+                <div className="col-12 col-lg-7">
+                    <div className="card">
+                        <div className="card-body">
+                            <h1 class="display-4">Are you new to UTS?</h1>
+                            <p class="lead">This website helps you to find a <strong>suitable course for you</strong> and also the course and subject information.</p>
+                            <hr class="my-4" />
+                            <p>Let find out how it works!</p>
+                            <p class="lead">
+                                <a class="btn btn-primary btn-lg" href={`/student/dashboard/howtouse`} role="button">Learn more...</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12 col-lg-5">
+                    <img src={img} className="img-fluid" />
                 </div>
             </div>
-            <div className="card my-5 bg-primary">
-                <div className="card-body">
-                    <p class="lead text-white mb-1">
-                        I've already know how it works, lets <a class="btn btn-warning btn-lg" href={`/student/howtouse`} role="button"><Search/>Find My Best Course</a>
-                    </p>
+
+            <div className="card my-5">
+                <div className="row">
+                    <div className="card-body col-12 col-lg-7 bg-primary">
+                        <p className="lead text-white mb-0">
+                            I've already know how it works, lets... <br/>
+                            <a className="btn btn-warning btn-lg" href={`/student/howtouse`} role="button"><Search />Find My Best Course</a>
+                        </p>
+                    </div>
+                    <div className="card-body col-12 col-lg-5">
+                        <p className="h4">
+                            Have some question? request?    
+                        </p>
+                        <p className="mb-0"><a class="" href={`/student/erequest/create`} role="button"><QuestionAnswer /> Make an E-Request </a></p>
+                    </div>
                 </div>
             </div>
         </div>

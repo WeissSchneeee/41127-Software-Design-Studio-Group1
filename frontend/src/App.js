@@ -22,6 +22,8 @@ import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
 import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
 import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
 import { SysLogList } from "./syslog/SysLogList";
+import { ErequestStudentForm } from "./student/erequest/ErequestStudentForm";
+import { ErequestStudent } from "./student/erequest/ErequestStudent";
 
 export const getUserID = _ => {
   let token;
@@ -107,6 +109,10 @@ function App() {
       </Route>
       <Route path="/student/enrollment" element={<NavBar page="student/enrollment" />}>
         <Route path="" element={<StudentEnrollment />} />
+      </Route>
+      <Route path="/student/erequest" element={<NavBar page="student/erequest" />}>
+        <Route path="create" element={<ErequestStudentForm />} />
+        <Route path="" element={<ErequestStudent />} />
       </Route>
       <Route path="/syslog/" element={<NavBar page="syslog" />}>
         <Route path="" element={<SysLogList />} />
