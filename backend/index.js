@@ -13,7 +13,7 @@ const connection = new Client(db);
 
 connection.connect((err) => {
     if (err) console.log(err);
-    else console.log("Connected to database!");
+    else console.log("Connected to database! ", db.host);
 });
 
 const addErrorLog = async (prefix, message) => {
@@ -67,6 +67,11 @@ app.use("/api/enrollment/sendinfo", require("./controller/enrollment_controller/
 // SYS LOG CONTROLLER APIs
 app.use("/api/syslog/list", require("./controller/syslog_controller/SyslogListController"));
 app.use("/api/syslog/delete", require("./controller/syslog_controller/SyslogDeleteController"));
+
+// E REQUEST CONTROLLER APIs
+app.use("/api/erequest/list", require("./controller/erequest_controller/ErequestListController"));
+app.use("/api/erequest/create", require("./controller/erequest_controller/ErequestCreateController"));
+
 
 
 app.listen(PORT, () => {
