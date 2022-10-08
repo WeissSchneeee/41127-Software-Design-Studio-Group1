@@ -32,7 +32,7 @@ export const Dashboard = () => {
                     <div className="card-body col-12 col-lg-7 bg-primary">
                         <p className="lead text-white mb-0">
                             I've already know how it works, lets... <br/>
-                            <a className="btn btn-warning btn-lg" href={`/student/howtouse`} role="button"><Search />Find My Best Course</a>
+                            <a className="btn btn-warning btn-lg" href={`/student/recommendation`} role="button"><Search />Find My Best Course</a>
                         </p>
                     </div>
                     <div className="card-body col-12 col-lg-5">
