@@ -58,6 +58,7 @@ app.use("/api/subject/delete", require("./controller/subject_controller/SubjectD
 app.use("/api/announcement/list", require("./controller/announcement_controller/announcementListController"));
 app.use("/api/announcement/create", require("./controller/announcement_controller/announcementCreateController"));
 app.use("/api/announcement/delete", require("./controller/announcement_controller/announcementDeleteController"));
+app.use("/api/announcement/detail", require("./controller/announcement_controller/announcementDetailController"));
 
 
 // ENROLLMENT CONTROLLER APIs

@@ -88,6 +88,7 @@ function App() {
         <Route path="" element={<AnnouncementList />} />
         <Route path="create" element={<CreateAnAnnouncement />} />
         <Route path="detail/:id" element={<AnnouncementDetails />} />
+        <Route path="update/:id" element={<CreateAnAnnouncement />} />
       </Route>
       <Route path="/enrolment" element={<NavBar page="enrolment" />}>
         <Route path="" element={<EnrolmentHomePage />} />

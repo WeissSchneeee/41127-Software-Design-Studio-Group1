@@ -29,7 +29,7 @@ export function CreateAnAnnouncement(props) {
     const loadSingleData = () => {
 
         setSubmitting(true)
-        fetch("/api/annoucement/detail", {
+        fetch("/api/announcement/detail", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

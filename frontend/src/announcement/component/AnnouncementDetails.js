@@ -80,7 +80,7 @@ export function AnnouncementDetails(props) {
                 <h2 className="mb-3"><strong>{state.input.subject_id} {state.input.subject_name}</strong></h2>
                 <p>
                     <IconButton title="Back" onClick={() => navigate(-1)}><Backspace /></IconButton>
-                    <IconButton title="Update" onClick={() => navigate(`/announcementlist/update/${state.input.subject_id}`)}><Edit /></IconButton>
+                    <IconButton title="Update" onClick={() => navigate(`/announcementlist/update/${state.input.announcement_id}`)}><Edit /></IconButton>
                     <IconButton title="Delete" onClick={handleDeleteBtn}><Delete /></IconButton>
                 </p>
                 <div className="card mb-3">
