@@ -24,7 +24,7 @@ export const AnnouncementList = (props) => {
 
     useEffect(() => {
         try {
-            if (userID != null && userID !== "none") getEnrollment();
+            if (userID != null && userID !== "none") getAnnouncement();
         } catch (error) {
             console.log(error);
         }
@@ -32,7 +32,7 @@ export const AnnouncementList = (props) => {
 
     if (userID === "none") return window.location.href = "/signin";
 
-    const getEnrollment = () => {
+    const getAnnouncement = () => {
         setLoading(true)
         fetch("/api/announcement/list", {
             method: "POST",
@@ -98,7 +98,7 @@ export const AnnouncementList = (props) => {
                 .then((res) => { return res.json(); })
                 .then((data) => {
                     if (data.status) {
-                        getEnrollment()
+                        getAnnouncement()
                     }
                     setLoading(false)
 
@@ -142,7 +142,7 @@ export const AnnouncementList = (props) => {
                 </TableCell>
                 <TableCell className="table-cell" align="center">{row.announcement_title}</TableCell>
                 <TableCell className="table-cell" align="center">{row.announcement_date}</TableCell>
-                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/`)}><Edit /></IconButton></TableCell>
+                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/announcementlist/detail/${row.announcement_id}`)}><Edit /></IconButton></TableCell>
             </TableRow>
         );
     };

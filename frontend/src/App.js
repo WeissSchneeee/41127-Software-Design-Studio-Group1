@@ -18,6 +18,7 @@ import { SubjectListStudent } from "./student/subject/SubjectListStudent";
 import { SubjectDetailStudent } from "./student/subject/SubjectDetailStudent";
 import { AnnouncementList } from "./announcement/component/AnnouncementList";
 import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncement";
+import { AnnouncementDetails } from "./announcement/component/AnnouncementDetails";
 import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
 import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
 import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
@@ -86,6 +87,7 @@ function App() {
       <Route path="/announcementlist" element={<NavBar page="announcementlist" />}>
         <Route path="" element={<AnnouncementList />} />
         <Route path="create" element={<CreateAnAnnouncement />} />
+        <Route path="detail/:id" element={<AnnouncementDetails />} />
       </Route>
       <Route path="/enrolment" element={<NavBar page="enrolment" />}>
         <Route path="" element={<EnrolmentHomePage />} />
