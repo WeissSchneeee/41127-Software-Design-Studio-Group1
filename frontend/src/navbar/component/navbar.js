@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Announcement, Book, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, School, Storage } from '@mui/icons-material/';
+import { AccountCircle, Announcement, Book, Dashboard, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, School, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -52,12 +52,13 @@ export const NavBar = (props) => {
                     }
                     {
                         (userID !== "none") && isStudent(userType) && <>
-                            <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard">Dashboard</a>
+                            <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard"><Dashboard/>Dashboard</a>
                             <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist"><Book/>Course List</a>
                             <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist"><Book/>Subject List</a>
                             <a className={props.page === "student/enrollment" ? "active" : ""} href="/student/enrollment"><LibraryBooks/>Enrollment</a>
                             <a className={props.page === "student/erequest" ? "active" : ""} href="/student/erequest"><QuestionAnswer/>E Request</a>
                             <a className={props.page === "student/recommendation" ? "active" : ""} href="/student/recommendation"><Recommend/>Recommendation</a>
+                            <a className={props.page === "student/announcementlist" ? "active" : ""} href="/student/announcementlist"><Announcement />View Announcements</a>
                         </>
                     }
                     {
