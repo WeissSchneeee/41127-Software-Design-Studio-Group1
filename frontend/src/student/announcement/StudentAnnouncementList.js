@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { TableCell, TableRow, Checkbox, IconButton } from "@mui/material";
-import { MainTable } from "../../figures/components/MainTable";
 import { getUserID } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { Edit } from "@mui/icons-material";
+import { SecondaryTable } from "../../figures/components/SecondaryTable";
 
 export const StudentAnnouncementList = (props) => {
     const [userID, setUserID] = useState();
@@ -75,7 +75,7 @@ export const StudentAnnouncementList = (props) => {
         ]
 
         return (
-            MainTable(columns, state.data, cellFormat, "Announcement List", "New Announcement", null, "Delete Announcement", null)
+            SecondaryTable(columns, state.data, cellFormat, "Announcement List")
         );
     };
     const cellFormat = (handleClick, isSelected, index, row) => {
@@ -90,7 +90,7 @@ export const StudentAnnouncementList = (props) => {
                 key={row.announcement_id}
                 selected={isItemSelected}
             >
-                 {/* <TableCell className="table-cell" padding="checkbox">
+                 <TableCell className="table-cell" padding="checkbox">
                      <Checkbox 
                         color="primary"
                         checked={isItemSelected}
@@ -99,7 +99,7 @@ export const StudentAnnouncementList = (props) => {
                         }}
                         onClick={(event) => handleClick(event, row.announcement_id)}
                     />
-                </TableCell> */}
+                </TableCell>
                 {/* <TableCell
                     className="table-cell"
                     component="th"

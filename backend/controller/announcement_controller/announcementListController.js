@@ -17,18 +17,18 @@ router.post("/", async (req, res) => {
             }else{
                 const announcements = [];
                 const readData = async (announcements) => {
-                for(let i = 0; i < result.rows.length; ++i){
-                    const data = result.rows[i];
-                    //console.log(data);
-                    let date = new Date(data.announcement_date);
-                    date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"});
-                    const announcement = {
-                        announcement_id: data.announcement_id,
-                        announcement_title: data.announcement_title,
-                        //announcement_description: data.announcement_description,
-                        announcement_date: date
-                    }
-                announcements.push(announcement)
+                    for(let i = 0; i < result.rows.length; ++i){
+                        const data = result.rows[i];
+                        //console.log(data);
+                        let date = new Date(data.announcement_date);
+                        date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"});
+                        const announcement = {
+                            announcement_id: data.announcement_id,
+                            announcement_title: data.announcement_title,
+                            //announcement_description: data.announcement_description,
+                            announcement_date: date
+                        }
+                        announcements.push(announcement);
 
                     // user_id: userID,
                     // email_address: String(data.email_address).toLowerCase(),
@@ -39,9 +39,8 @@ router.post("/", async (req, res) => {
                     // user_type: (String(data.user_type).toLowerCase() === 'a') ? "System Admin" : (String(data.user_type).toLowerCase() === 'e' ? "Staff" : "Student"),
                     // role: (String(data.user_type).toLowerCase() === 'a' || String(data.user_type).toLowerCase() === 'e') ? uniqueData.role : "Student",
                     // dob: dob
+                    };
                 };
-                
-            };
                 await(readData(announcements));
                 //console.log(announcements);
                 return res.status(200).json({
