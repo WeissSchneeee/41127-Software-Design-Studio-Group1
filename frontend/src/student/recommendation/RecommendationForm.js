@@ -117,13 +117,13 @@ export const RecommendationForm = () => {
                                     <h1 class="display-5">Fill in your personal details and your preference</h1>
                                     <p class="lead">Please fill in your current grade(which year are you in your study plan) and select your preference</p>
                                     <div className="form-group row">
-                                        <label className="col-12 col-md-4">Your grade</label>
+                                        <label className="col-12 col-md-4">Pre requisite</label>
                                         <div className="col-12 col-md-8">
                                             <input type="text" id="subjectPreRS" className="form-control" placeholder="Study level" onChange={handleChange} value={state.input.studyLevel}/>
                                         </div>
                                     </div> 
                                     <div className="form-group row">
-                                        <label className="col-12 col-md-4">Preference</label>
+                                        <label className="col-12 col-md-4">Major</label>
                                         <div className="col-12 col-md-8">
                                         <select id="subject_level" value={state.input.preference} className="form-control form-select" onChange={handleChange} required>
                                                 <option value="">- select -</option>
