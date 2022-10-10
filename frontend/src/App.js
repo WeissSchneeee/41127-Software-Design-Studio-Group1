@@ -26,6 +26,7 @@ import { SysLogList } from "./syslog/SysLogList";
 import { ErequestStudentForm } from "./student/erequest/ErequestStudentForm";
 import { ErequestStudent } from "./student/erequest/ErequestStudent";
 import { RecommendationForm } from "./student/recommendation/RecommendationForm";
+import { SessionList } from "./session/component/SessionList";
 
 export const getUserID = _ => {
   let token;
@@ -122,6 +123,9 @@ function App() {
       </Route>      
       <Route path="/syslog/" element={<NavBar page="syslog" />}>
         <Route path="" element={<SysLogList />} />
+      </Route>
+      <Route path="/session/" element={<NavBar page="sessionlist" />}>
+        <Route path="" element={<SessionList />} />
       </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>

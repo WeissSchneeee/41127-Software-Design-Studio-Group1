@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Announcement, Book, Dashboard, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, Storage } from '@mui/icons-material/';
+import { AccountCircle, Announcement, Book, CalendarTodayOutlined, Dashboard, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -73,6 +73,7 @@ export const NavBar = (props) => {
                     }
                     {
                         (userID !== "none") && isAdmin(userType) && <>
+                            <a className={props.page === "sessionlist" ? "active" : ""} href="/session"><CalendarTodayOutlined />Session</a>
                             <a className={props.page === "announcementlist" ? "active" : ""} href="/announcementlist"><Announcement />Post Announcements</a>
                             <a className={props.page === "syslog" ? "active" : ""} href="/syslog">< HourglassBottom />Sys Log</a>
                             <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage />Account List</a>
