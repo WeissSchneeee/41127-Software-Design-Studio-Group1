@@ -21,8 +21,6 @@ import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncem
 import { AnnouncementDetails } from "./announcement/component/AnnouncementDetails";
 import { StudentAnnouncementList } from "./student/announcement/StudentAnnouncementList"
 import { StudentAnnouncementDetails } from "./student/announcement/StudentAnnouncementDetails"
-import { CreateEnrolmentForm } from "./enrolment/component/CreateEnrolmentForm";
-import { EnrolmentHomePage } from "./enrolment/component/EnrolmentHomePage";
 import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
 import { SysLogList } from "./syslog/SysLogList";
 import { ErequestStudentForm } from "./student/erequest/ErequestStudentForm";
@@ -92,11 +90,6 @@ function App() {
         <Route path="detail/:id" element={<AnnouncementDetails />} />
         <Route path="update/:id" element={<CreateAnAnnouncement />} />
       </Route>
-      <Route path="/enrolment" element={<NavBar page="enrolment" />}>
-        <Route path="" element={<EnrolmentHomePage />} />
-        <Route path="create" element={<CreateEnrolmentForm />} />
-      </Route>
-
       <Route path="/student/courselist" element={<NavBar page="student/courselist" />}>
         <Route path="" element={<CourseListStudent />} />
         <Route path="detail/:id" element={<CourseDetailStudent />} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { AccountCircle, Announcement, Book, Dashboard, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, School, Storage } from '@mui/icons-material/';
+import { AccountCircle, Announcement, Book, Dashboard, HourglassBottom, LibraryBooks, Login, MeetingRoom, QuestionAnswer, Recommend, Storage } from '@mui/icons-material/';
 import '../style/navbar.css';
 import { getUserID, logOut } from "../../App";
 
@@ -46,25 +46,34 @@ export const NavBar = (props) => {
                     {(userID === "none") && <a className={props.page === "signin" ? "active" : ""} href="/signin"><Login />Sign In</a>}
                     {
                         (userID !== "none") && (isStaff(userType) || isAdmin(userType)) && <>
-                            <a className={props.page === "subjectlist" ? "active" : ""} href="/subjectlist"><Book/>Subject List</a>
-                            <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Book/>Course List</a>
+                            <div className="topnav-dropdown">
+                                <button className={(props.page === "subjectlist" || props.page === "courselist") ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><Book />Subjects</button>
+                                <div className="topnav-dropdown-content">
+                                    <a className={props.page === "subjectlist" ? "active" : ""} href="/subjectlist"><Book/>Subject List</a>
+                                    <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Book/>Course List</a>
+                                </div>
+                            </div>
                         </>
                     }
                     {
                         (userID !== "none") && isStudent(userType) && <>
                             <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard"><Dashboard/>Dashboard</a>
-                            <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist"><Book/>Course List</a>
-                            <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist"><Book/>Subject List</a>
-                            <a className={props.page === "student/enrollment" ? "active" : ""} href="/student/enrollment"><LibraryBooks/>Enrollment</a>
+                            <div className="topnav-dropdown">
+                                <button className={(props.page === "student/courselist" || props.page === "student/subjectlist" || props.page === "student/enrollment" || props.page === "student/recommendation") ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><Book />Subjects</button>
+                                <div className="topnav-dropdown-content">
+                                    <a className={props.page === "student/enrollment" ? "active" : ""} href="/student/enrollment"><LibraryBooks/>Enrollment</a>
+                                    <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist"><Book/>Course List</a>
+                                    <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist"><Book/>Subject List</a>
+                                    <a className={props.page === "student/recommendation" ? "active" : ""} href="/student/recommendation"><Recommend/>Recommendation</a>
+                                </div>
+                            </div>
                             <a className={props.page === "student/erequest" ? "active" : ""} href="/student/erequest"><QuestionAnswer/>E Request</a>
-                            <a className={props.page === "student/recommendation" ? "active" : ""} href="/student/recommendation"><Recommend/>Recommendation</a>
                             <a className={props.page === "student/announcementlist" ? "active" : ""} href="/student/announcementlist"><Announcement />View Announcements</a>
                         </>
                     }
                     {
                         (userID !== "none") && isAdmin(userType) && <>
                             <a className={props.page === "announcementlist" ? "active" : ""} href="/announcementlist"><Announcement />Post Announcements</a>
-                            <a className={props.page === "enrolment" ? "active" : ""} href="/enrolment">< School />Enrol in Subject</a>
                             <a className={props.page === "syslog" ? "active" : ""} href="/syslog">< HourglassBottom />Sys Log</a>
                             <a className={props.page === "accountlist" ? "active" : ""} href="/accountlist"><Storage />Account List</a>
                         </>
@@ -82,7 +91,7 @@ const accountMenu = (page, userType) => {
     return (
         <div className="topnav-dropdown">
             <button className={(page === "profile") ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><AccountCircle /></button>
-            <div className="topnav-dropdown-content">
+            <div className="topnav-dropdown-content" style={{right: "0"}}>
                 <a className={page === "profile" ? "active" : ""} href="/profile"><AccountCircle />Profile</a>
                 <a href="/signin" onClick={logOut}><MeetingRoom />Log Out</a>
             </div>
