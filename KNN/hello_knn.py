@@ -1,6 +1,7 @@
 from ast import Sub
 from re import sub
 from tokenize import group
+from numpy import append, true_divide
 from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 import psycopg2
@@ -107,7 +108,7 @@ elif(answer == 'n'):
 #     if(splitPreR(data) != answer):
 #       rowTrainDataList.pop(rowTrainDataList.index(data))
 
-print(rowTrainDataList)
+# print(rowTrainDataList)
 
 subjectNO = []
 targetY = []
@@ -182,16 +183,133 @@ result = estimator.predict([predictor])
 
 print(result)
 
-subjectNoWithSimilarity = [[]]
+subjectNoWithSimilarity = []
 subjectNOWithSimi = [subjectNO, targetY]
-for data in subjectNOWithSimi:
-  subjectNoWithSimilarity.append(data)
-print(subjectNOWithSimi)
+i = 0
+for data in targetY:
+  if(data == result):
+    subjectNoWithSimilarity.append(i)
+  i = i + 1
+
+# print(subjectNOWithSimi)
+
+print(subjectNoWithSimilarity)
+
+KNNsubjectNo = [] 
+for data in subjectNO:
+  for d in subjectNoWithSimilarity:
+    if(subjectNO.index(data) == d):
+      KNNsubjectNo.append(int(data))
+
+print(KNNsubjectNo)
+
+
+StudentDataSet = open("studentInfo.txt", "r")
+# print(trainingDataSet.read())
+
+rowStudentDataList = []
+for data in StudentDataSet:
+  rowStudentDataList.append(data)
+
+def splitSutudentNo(data):
+  x = data.split(",")
+  return int(x[0])
+
+def splitMajor(data):
+  x = data.split(",")
+  x = x[1].strip()
+  if(x == 'Data Analysis'):
+    x = 1
+  elif(x == 'Cyber Security'):
+    x = 2
+  elif(x == 'Software Development'):
+    x = 3
+  elif(x == 'Machine Learning'):
+    x = 4
+  elif(x == 'Real Time System'):
+    x = 5
+  elif(x == 'Embedded System'):
+    x = 6
+  return x
+
+def findMajor(data):
+  stuNo = data
+  for d in rowStudentDataList:
+    tmpNO = splitSutudentNo(d)
+    tmpMajor = splitMajor(d)
+    if(int(tmpNO) == stuNo):
+      return tmpMajor
+  return 0
+
+
+def splitSubjects(data):
+  tmp = data.split(",")
+  x = []
+  x.append(int(tmp[2]))
+  x.append(int(tmp[3]))
+  x.append(int(tmp[4]))
+  x.append(int(tmp[5]))
+  x.append(int(tmp[6]))
+  return x
+
+def findASubject(array, subjectid):
+  for da in array:
+    if(da == subjectid):
+      return True
+  return False
+
+StusubjectCategory = []
+for data in rowStudentDataList:
+  StusubjectCategory.append(splitSubjects(data))
+
+# print(StusubjectCategory)
+
+StusubjectFind = []
+for data in KNNsubjectNo:
+  for dat in StusubjectCategory:
+    if(findASubject(dat, data)):
+      StusubjectFind.append(StusubjectCategory.index(dat))
+
+print(StusubjectFind)
+
+studentNo = []
+for data in rowStudentDataList:
+  studentNo.append(splitSutudentNo(data))
 
 
 
-# subjectCategory = []
+KNNstudent = []
+for data in studentNo:
+  for dat in StusubjectFind:
+        if(studentNo.index(data) == dat):
+          KNNstudent.append(int(data))
+print(KNNstudent)
 
+KNN2 = []
+for data in KNNstudent:
+  KNN2.append([findMajor(data)])
+  
+print(KNN2)
+
+print(KNNsubjectNo)
+
+if(len(KNN2) > len(KNNsubjectNo)):
+  KNNsubjectNo.append(-100)
+elif(len(KNN2) < len(KNNsubjectNo)):
+  KNN2.append([-100])
+
+x2 = KNN2
+y2 = KNNsubjectNo
+
+estimate = KNeighborsClassifier(n_neighbors= 3) # k = 3
+estimate.fit(x2,y2)
+
+print("Enter your major")
+major = int(input())
+
+ret = estimate.predict([[major]])
+
+print(ret)
 # for data in subjectNoWithSimilarity:
 #   print(data)
 
@@ -221,15 +339,15 @@ print(subjectNOWithSimi)
 
 #student: major, preference_1 level, ......, preference_5 level, [target course]
 
-student = [[1, 0, 0, 0, 0, 5], [1, 0, 0, 0, 0, 4], [1, 1, 3, 0, 0, 3], [2, 0, 2, 0, 1, 2], [2, 1, 2, 3, 4, 5], [2, 4, 2, 3, 1, 1]]
-subject = [332456, 332456, 13456, 123456, 654124, 756897]
+# student = [[1, 0, 0, 0, 0, 5], [1, 0, 0, 0, 0, 4], [1, 1, 3, 0, 0, 3], [2, 0, 2, 0, 1, 2], [2, 1, 2, 3, 4, 5], [2, 4, 2, 3, 1, 1]]
+# subject = [332456, 332456, 13456, 123456, 654124, 756897]
 
-est2 = KNeighborsClassifier(n_neighbors= 3) # k = 3
-est2.fit(student, subject)
+# est2 = KNeighborsClassifier(n_neighbors= 3) # k = 3
+# est2.fit(student, subject)
 
-ret2 = est2.predict([[1, 1, 4, 0, 0, 1]])
+# ret2 = est2.predict([[1, 1, 4, 0, 0, 1]])
 
-print(ret2)
+# print(ret2)
 
 
 
