@@ -27,6 +27,8 @@ import { ErequestStudentForm } from "./student/erequest/ErequestStudentForm";
 import { ErequestStudent } from "./student/erequest/ErequestStudent";
 import { RecommendationForm } from "./student/recommendation/RecommendationForm";
 import { SessionList } from "./session/component/SessionList";
+import { ErequestList } from "./erequest/component/ErequestList";
+import { ErequestDetail } from "./erequest/component/ErequestDetail";
 
 export const getUserID = _ => {
   let token;
@@ -123,6 +125,10 @@ function App() {
       </Route>      
       <Route path="/syslog/" element={<NavBar page="syslog" />}>
         <Route path="" element={<SysLogList />} />
+      </Route>      
+      <Route path="/erequestlist/" element={<NavBar page="erequestlist" />}>
+        <Route path="detail/:id" element={<ErequestDetail />} />
+        <Route path="" element={<ErequestList />} />
       </Route>
       <Route path="/session/" element={<NavBar page="sessionlist" />}>
         <Route path="" element={<SessionList />} />

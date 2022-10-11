@@ -1,8 +1,19 @@
 import { CallOutlined, QuestionAnswer, QuestionMark, Search } from "@mui/icons-material";
 import { Dialog, Icon } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { getUserID } from "../../App";
 import img from "./../../images/iStock-131364744.jpg"
 
 export const Dashboard = () => {
+
+    const [userID, setUserID] = useState();
+    useEffect(() => {
+        try {
+            getUserID().then(res => setUserID(res));
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     document.title = "Dashboard Student"
 

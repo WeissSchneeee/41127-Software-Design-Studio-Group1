@@ -118,7 +118,7 @@ export function ErequestStudentForm(props) {
     }
 
     const closeForm = () => {
-        navigate('/erequest')
+        navigate('/student/erequest')
     }
 
     return (

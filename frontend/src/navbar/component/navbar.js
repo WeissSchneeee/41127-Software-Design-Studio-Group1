@@ -53,6 +53,7 @@ export const NavBar = (props) => {
                                     <a className={props.page === "courselist" ? "active" : ""} href="/courselist"><Book/>Course List</a>
                                 </div>
                             </div>
+                            <a className={props.page === "erequestlist" ? "active" : ""} href="/erequestlist"><QuestionAnswer/>E Request</a>
                         </>
                     }
                     {

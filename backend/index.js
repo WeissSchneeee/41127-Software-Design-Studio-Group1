@@ -73,6 +73,10 @@ app.use("/api/syslog/delete", require("./controller/syslog_controller/SyslogDele
 // E REQUEST CONTROLLER APIs
 app.use("/api/erequest/list", require("./controller/erequest_controller/ErequestListController"));
 app.use("/api/erequest/create", require("./controller/erequest_controller/ErequestCreateController"));
+app.use("/api/erequest/detail", require("./controller/erequest_controller/ErequestDetailController"));
+app.use("/api/erequest/updateanswer", require("./controller/erequest_controller/ErequestUpdateAnswerController"));
+app.use("/api/erequest/delete", require("./controller/erequest_controller/ErequestDeleteController"));
+app.use("/api/erequest/file", require("./controller/erequest_controller/ErequestFileController"));
 
 
 

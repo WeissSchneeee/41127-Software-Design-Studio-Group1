@@ -19,10 +19,6 @@ router.post("/", async (req, res) => {
         form.uploadDir = uploadFolder;
         form.keepExtensions = true;
         form.parse(req, function (err, field, files) {
-
-
-
-
             if (err !== null) {
                 console.log(err)
                 return res.status(400).json({
@@ -32,9 +28,9 @@ router.post("/", async (req, res) => {
             }
             let filename = null;
 
-            if (files.file) {
-                const basename = files.file.newFilename
-                const extsn = files.file.originalFilename.split(".").pop();
+            if (files.answ_file) {
+                const basename = files.answ_file.newFilename
+                const extsn = files.answ_file.originalFilename.split(".").pop();
                 filename = basename + "." + extsn;
 
                 try {
@@ -42,23 +38,23 @@ router.post("/", async (req, res) => {
                 } catch (err) { console.log("fs", err) }
             }
 
-            const { student_id, question } = field
+            const { request_id, student_id, answer, answer_by } = field
 
             // create new
             new Promise((resolve, reject) => {
-                const result = add(student_id, question, filename);
+                const result = update(request_id, answer, filename, answer_by);
                 resolve(result)
             }).then((inserted) => {
-                if (!inserted.newID) {
+                if (!inserted.request_id) {
                     return res.status(400).json({
                         status: false,
-                        message: "Failed to create add new request!"
+                        message: "Failed to update answer!"
                     });
                 }
                 return res.status(200).json({
                     status: true,
-                    newid: inserted.newID,
-                    message: "Successfully add new request!",
+                    newid: inserted.request_id,
+                    message: "Successfully update answer!",
                     files: files
                 });
             })
@@ -79,48 +75,45 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const add = async (student_id, question, filename) => {
+const update = async (last_id, answer, answer_file, answer_by) => {
     try {
-
-        const newID = await generateID();
-        const sql = `insert into request (request_id, student_id, ins_time, question, file, status) values ($1, $2, NOW(), $3, $4, $5);`
-        const newRow = [newID, student_id, question, filename, 1]
+        let sql = null
+        let newRow = []
+        if (answer_file) {
+            sql = `update request set
+            answer_time = now(), answer = $2, answer_file = $3, answer_by = $4, status = $5
+            where request_id = $1;`
+            newRow = [last_id, answer, answer_file, answer_by, 2]
+        } else {
+            sql = `update request set
+            answer_time = now(), answer = $2, answer_by = $3, status = $4
+            where request_id = $1;`
+            newRow = [last_id, answer, answer_by, 2]
+        }
+        
         return new Promise((resolve, reject) => {
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
                     console.log('err', err)
                     return reject(err);
                 } else {
-                    console.log(`Request successfully added!`);
-                    return resolve({ newID: newID });
+                    console.log(`Request: ${last_id} successfully updated!`);
+                    return resolve({ request_id: last_id });
                 }
             });
         });
-
-
     } catch (error) {
         console.log(error);
-        // addErrorLog(req.originalUrl + "_add", error.toString())
+        addErrorLog("request_update_answer", error.toString())
     }
 };
 
 
-const generateID = async () => {
-    const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-    const characters = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
-    // User ID format: UCCNNCCNNN
-    let userID;
-    do {
-        userID = "REQ" + characters[randomNumber(26)] + characters[randomNumber(26)] + numbers[randomNumber(10)] + numbers[randomNumber(10)] + characters[randomNumber(26)] + characters[randomNumber(26)] + numbers[randomNumber(10)] + numbers[randomNumber(10)] + numbers[randomNumber(10)];
-        userID = String(userID).toUpperCase();
-    } while (await isExisted("request_id", userID));
-    return userID;
-};
 const isExisted = (field, data) => {
-    const sql = `SELECT * FROM request WHERE ${field} = '${String(data)}';`;
+    const sql = `SELECT * FROM course WHERE ${field} = $1`;
 
     return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result) => {
+        connection.query(sql, [data], (err, result) => {
             if (err) {
                 console.log(err);
                 return reject(true);
@@ -129,7 +122,4 @@ const isExisted = (field, data) => {
             }
         });
     });
-};
-const randomNumber = (n) => {
-    return Math.floor(Math.random() * n);
 };

@@ -70,6 +70,33 @@ export const ErequestStudent = (props) => {
         }))
     }
 
+    const loadFile = (id, whatfile) => {
+
+        fetch(`/api/erequest/file?id=${id}&get=${whatfile}`, {
+            method: "get",
+        })
+            .then((res) => {
+                let filename = res.headers.get('content-disposition').split('filename=')[1];
+                let blob = res.blob()
+                return { filename: filename, data: blob }
+            })
+            .then((data) => {
+                (data.data).then((val) => {
+                    const filename = data.filename
+                    const url = window.URL.createObjectURL(new Blob([val]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', filename); //or any other extension
+                    document.body.appendChild(link);
+                    link.click();
+                })
+            })
+            .then((err) => {
+                console.error(err)
+                setLoading(false)
+            });
+    }
+
     return (
 
         <section>
@@ -99,7 +126,7 @@ export const ErequestStudent = (props) => {
                                                     <div><small><strong>Question</strong></small></div>
                                                     <div>{val.question}</div>
                                                     <div><small><strong>File Upload</strong></small></div>
-                                                    <div><a href={`/api/upload/erequest/${val.file}`}>{val.file}</a></div>
+                                                    <div><span className="btn badge bg-warning" onClick={() => loadFile(val.request_id, 'request')}>{val.file}</span></div>
                                                 </div>
                                             </div>
                                             <div className="col-12 col-lg-3">
@@ -135,7 +162,7 @@ export const ErequestStudent = (props) => {
                                                             <div><small><strong>Answer</strong></small></div>
                                                             <div>{val.answer}</div>
                                                             <div><small><strong>File Upload</strong></small></div>
-                                                            <div><a href={`/api/upload/erequest/${val.answer_file}`}>{val.answer_file}</a></div>
+                                                            <div><span className="btn badge bg-success" onClick={() => loadFile(val.request_id, 'answer')}>{val.answer_file}</span></div>
                                                         </div>
                                                     </div>
                                                     <div className="col-12 col-lg-3">
