@@ -127,7 +127,7 @@ export function ErequestDetail(props) {
                 setSubmitting(false)
                 alert(data.message);
                 if (data.status) {
-                    location.reload()
+                    window.location.reload()
                 }
             });
         setSubmitting(false)
