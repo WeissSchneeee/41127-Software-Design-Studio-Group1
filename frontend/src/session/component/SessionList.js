@@ -63,8 +63,27 @@ const sessionTable = (sessions, setSessions) => {
     const createSession = _ => {
         document.getElementById("createSessionForm").style.display = "block";
     };
-    const deleteSession = _ => {
-        
+    const deleteSession = (selected) => {
+        try{
+            fetch("/api/deletesession", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    list: selected
+                })
+            })
+                .then((res) => { return res.json(); } )
+                .then((data) => {
+                    alert(data.message);
+                    if(data.status){
+                        getSessionList(setSessions);
+                    }
+                });
+        }catch(error){
+            console.log(error);
+        }
     };
     return(MainTable(columns, sessions, cellFormat, "SESSION DATABASE", "New Session", createSession, "Delete Session", deleteSession));
 }; 

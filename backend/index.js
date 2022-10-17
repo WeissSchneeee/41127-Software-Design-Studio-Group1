@@ -79,6 +79,7 @@ app.use("/api/erequest/file", require("./controller/erequest_controller/Erequest
 // SESSION CONTROLLER APIs
 app.use("/api/getsessionlist", require("./controller/session_controller/GetSessionListController"));
 app.use("/api/createsession", require("./controller/session_controller/CreateSessionController"));
+app.use("/api/deletesession", require("./controller/session_controller/DeleteSessionController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
