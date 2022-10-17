@@ -60,11 +60,9 @@ app.use("/api/announcement/create", require("./controller/announcement_controlle
 app.use("/api/announcement/delete", require("./controller/announcement_controller/announcementDeleteController"));
 app.use("/api/announcement/detail", require("./controller/announcement_controller/announcementDetailController"));
 
-
 // ENROLLMENT CONTROLLER APIs
 app.use("/api/getenrollmentlist", require("./controller/enrollment_controller/GetStudentEnrollmentController"));
 app.use("/api/enrollment/sendinfo", require("./controller/enrollment_controller/SendInfoEnrollmentController"));
-app.use("/api/getsessionlist", require("./controller/session_controller/GetSessionListController"));
 
 // SYS LOG CONTROLLER APIs
 app.use("/api/syslog/list", require("./controller/syslog_controller/SyslogListController"));
@@ -78,7 +76,9 @@ app.use("/api/erequest/updateanswer", require("./controller/erequest_controller/
 app.use("/api/erequest/delete", require("./controller/erequest_controller/ErequestDeleteController"));
 app.use("/api/erequest/file", require("./controller/erequest_controller/ErequestFileController"));
 
-
+// SESSION CONTROLLER APIs
+app.use("/api/getsessionlist", require("./controller/session_controller/GetSessionListController"));
+app.use("/api/createsession", require("./controller/session_controller/CreateSessionController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

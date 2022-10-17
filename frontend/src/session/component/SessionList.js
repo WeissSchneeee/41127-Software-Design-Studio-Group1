@@ -3,6 +3,7 @@ import { getUserID } from "../../App";
 import { TableCell, TableRow, Checkbox, IconButton } from "@mui/material";
 import { MainTable } from "../../figures/components/MainTable";
 import { Edit } from "@mui/icons-material";
+import { CreateSessionForm } from "./CreateSessionForm";
 
 export const SessionList = _ => {
     const [userID, setUserID] = useState();
@@ -26,6 +27,7 @@ export const SessionList = _ => {
     if(userID === "none") return window.location.href = "/signin";
     return(
         <secion>
+            {CreateSessionForm(sessions, setSessions)}
             {sessionTable(sessions, setSessions)}
         </secion>
     );
@@ -59,7 +61,7 @@ const sessionTable = (sessions, setSessions) => {
         },
     ];
     const createSession = _ => {
-        
+        document.getElementById("createSessionForm").style.display = "block";
     };
     const deleteSession = _ => {
         
