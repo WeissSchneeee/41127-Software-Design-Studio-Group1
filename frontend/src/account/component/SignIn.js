@@ -37,7 +37,10 @@ export const SignIn = _ => {
                             localStorage.setItem("u", data.loginToken);
                         else
                             sessionStorage.setItem("u", data.loginToken);
-                        window.location.href = '/profile';
+                        if(data.userType === "s")
+                            window.location.href = '/student/dashboard';
+                        else
+                            window.location.href = '/profile';
                     }
                 });
         }catch(error){
