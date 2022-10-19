@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TableCell, TableRow, Checkbox, IconButton } from "@mui/material";
 import { getUserID } from "../../App";
 import { useNavigate } from "react-router-dom";
-import { Edit } from "@mui/icons-material";
+import { Edit, Search } from "@mui/icons-material";
 import { SecondaryTable } from "../../figures/components/SecondaryTable";
 
 export const StudentAnnouncementList = (props) => {
@@ -111,7 +111,7 @@ export const StudentAnnouncementList = (props) => {
                 </TableCell> */}
                 <TableCell className="table-cell" align="center">{row.announcement_title}</TableCell>
                 <TableCell className="table-cell" align="center">{row.announcement_date}</TableCell>
-                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/announcementlist/detail/${row.announcement_id}`)}><Edit /></IconButton></TableCell>
+                <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/student/announcementlist/detail/${row.announcement_id}`)}><Search /></IconButton></TableCell>
             </TableRow>
         );
     };
