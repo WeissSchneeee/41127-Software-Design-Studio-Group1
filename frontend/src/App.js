@@ -29,6 +29,7 @@ import { RecommendationForm } from "./student/recommendation/RecommendationForm"
 import { SessionList } from "./session/component/SessionList";
 import { ErequestList } from "./erequest/component/ErequestList";
 import { ErequestDetail } from "./erequest/component/ErequestDetail";
+import { SessionDetail } from "./session/component/SessionDetail";
 
 export const getUserID = _ => {
   let token;
@@ -132,6 +133,7 @@ function App() {
       </Route>
       <Route path="/session/" element={<NavBar page="sessionlist" />}>
         <Route path="" element={<SessionList />} />
+        <Route path="detail/:id" element={<SessionDetail />} />
       </Route>
       <Route path="*" element={<NavBar />} />
     </Routes>

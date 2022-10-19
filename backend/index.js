@@ -77,8 +77,10 @@ app.use("/api/erequest/delete", require("./controller/erequest_controller/Ereque
 app.use("/api/erequest/file", require("./controller/erequest_controller/ErequestFileController"));
 
 // SESSION CONTROLLER APIs
+app.use("/api/getsession", require("./controller/session_controller/GetSessionController"));
 app.use("/api/getsessionlist", require("./controller/session_controller/GetSessionListController"));
 app.use("/api/createsession", require("./controller/session_controller/CreateSessionController"));
+app.use("/api/updatesession", require("./controller/session_controller/UpdateSessionController"));
 app.use("/api/deletesession", require("./controller/session_controller/DeleteSessionController"));
 
 app.listen(PORT, () => {

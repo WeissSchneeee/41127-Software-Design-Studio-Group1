@@ -4,7 +4,7 @@ const connection = require("../../index.js").connection;
 
 router.post("/", async (req, res) => {
     try{
-        const sql = `SELECT * FROM session`;
+        const sql = `SELECT * FROM session ORDER BY census_date DESC`;
         connection.query(sql, async (err, result) => {
             if(err){
                 console.log(err);
