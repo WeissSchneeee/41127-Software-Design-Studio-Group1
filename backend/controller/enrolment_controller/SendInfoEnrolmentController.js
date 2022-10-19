@@ -5,19 +5,19 @@ const { emailTransporter } = require("../../email")
 
 router.post("/", async (req, res) => {
     try {
-        const { enrollId } = req.body;
+        const { enrolId } = req.body;
 
         const date = new Date();
         const year = date.getFullYear();
         const sql = `
-            select * from enrollment
-            inner join session on session.session_id = enrollment.session_id
-            inner join student on student.student_id = enrollment.student_id
+            select * from enrolment
+            inner join session on session.session_id = enrolment.session_id
+            inner join student on student.student_id = enrolment.student_id
             inner join user_t on user_t.user_id = student.student_id
-            inner join subject on subject.subject_id = enrollment.subject_id
-            where enrollment_id = $1
+            inner join subject on subject.subject_id = enrolment.subject_id
+            where enrolment_id = $1
         `;
-        connection.query(sql, [enrollId], async (err, result) => {
+        connection.query(sql, [enrolId], async (err, result) => {
             if (err) {
                 console.log(err);
                 addErrorLog(req.originalUrl + "", error.toString())
@@ -33,21 +33,21 @@ router.post("/", async (req, res) => {
                     emailTransporter.sendMail({
                         from: '"CRS UTS" <youremail@gmail.com>', // sender address
                         to: row.email_address, // list of receivers
-                        subject: "Enrollment UTS Detail ✔", // Subject line
-                        text: `Hi ${row.first_name}, this detail of your enrollment at UTS`, // plain text body
+                        subject: "enrolment UTS Detail ✔", // Subject line
+                        text: `Hi ${row.first_name}, this detail of your enrolment at UTS`, // plain text body
                         html: `
-                        <p>Hi <b>${row.first_name}</b>, this detail of your enrollment at UTS</p>
+                        <p>Hi <b>${row.first_name}</b>, this detail of your enrolment at UTS</p>
                         <table>
                         <tr>
-                            <td colspan="2"><b>Enrollment Detail</b></td>
+                            <td colspan="2"><b>enrolment Detail</b></td>
                         </tr>
                         <tr>
-                            <td>Enrollment Id</td>
-                            <td>${row.enrollment_id}</td>
+                            <td>enrolment Id</td>
+                            <td>${row.enrolment_id}</td>
                         </tr>
                         <tr>
                             <td>Date</td>
-                            <td>${row.enrollment_date}</td>
+                            <td>${row.enrolment_date}</td>
                         </tr>
                         <tr>
                             <td>Status</td>

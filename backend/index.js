@@ -60,9 +60,9 @@ app.use("/api/announcement/create", require("./controller/announcement_controlle
 app.use("/api/announcement/delete", require("./controller/announcement_controller/announcementDeleteController"));
 app.use("/api/announcement/detail", require("./controller/announcement_controller/announcementDetailController"));
 
-// ENROLLMENT CONTROLLER APIs
-app.use("/api/getenrollmentlist", require("./controller/enrollment_controller/GetStudentEnrollmentController"));
-app.use("/api/enrollment/sendinfo", require("./controller/enrollment_controller/SendInfoEnrollmentController"));
+// ENROLMENT CONTROLLER APIs
+app.use("/api/getenrolmentlist", require("./controller/enrolment_controller/GetStudentEnrolmentController"));
+app.use("/api/enrolment/sendinfo", require("./controller/enrolment_controller/SendInfoEnrolmentController"));
 
 // SYS LOG CONTROLLER APIs
 app.use("/api/syslog/list", require("./controller/syslog_controller/SyslogListController"));

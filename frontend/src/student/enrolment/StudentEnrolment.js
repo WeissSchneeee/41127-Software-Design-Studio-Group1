@@ -3,9 +3,9 @@ import { TableCell, TableRow, Checkbox } from "@mui/material";
 import { MainTable } from "../../figures/components/MainTable";
 import { getUserID } from "../../App";
 
-export const StudentEnrollment = _ => {
+export const StudentEnrolment = _ => {
     const [userID, setUserID] = useState();
-    const [enrollment, setEnrollment] = useState([]);
+    const [enrolment, setenrolment] = useState([]);
 
     useEffect(() => {
         try{
@@ -16,7 +16,7 @@ export const StudentEnrollment = _ => {
     }, []);
     useEffect(() => {
         try{
-            if(userID != null && userID !== "none") getEnrollment(userID, setEnrollment);
+            if(userID != null && userID !== "none") getEnrolment(userID, setenrolment);
         }catch(error){
             console.log(error);
         }
@@ -24,13 +24,13 @@ export const StudentEnrollment = _ => {
 
     return(
         <section>
-            {enrollmentList(enrollment)}
+            {enrolmentList(enrolment)}
         </section>
     );
 };
 
-const enrollmentList = (enrollment) => {
-    // List of subjects the student is currently enrolled to
+const enrolmentList = (enrolment) => {
+    // List of subjects the student is currently enroled to
     const columns = [
         {
             id: 'year',
@@ -64,16 +64,16 @@ const enrollmentList = (enrollment) => {
         }
     ];
     const cellFormat = (handleClick, isSelected, index, row) => {
-        const isItemSelected = isSelected(row.enrollment_id);
+        const isItemSelected = isSelected(row.enrolment_id);
         const labelId = `enhanced-table-checkbox-${index}`;
         return(
             <TableRow
                 hover
-                onClick={(event) => handleClick(event, row.enrollment_id)}
+                onClick={(event) => handleClick(event, row.enrolment_id)}
                 role="checkbox"
                 aria-checked={isItemSelected}
                 tabIndex={-1}
-                key={row.enrollment_id}
+                key={row.enrolment_id}
                 selected={isItemSelected}
             >
                 <TableCell className="table-cell" padding="checkbox">
@@ -103,12 +103,12 @@ const enrollmentList = (enrollment) => {
         );
     };
     return(
-        MainTable(columns, enrollment, cellFormat, "ENROLLMENT DETAILS", "Enrol in Subjects", null, "Withdraw Subject(s)", null)
+        MainTable(columns, enrolment, cellFormat, "enrolMENT DETAILS", "Enrol in Subjects", null, "Withdraw Subject(s)", null)
     );
 };
 
-const getEnrollment = async (userID, setEnrollment) => {
-    const res = await fetch("/api/getenrollmentlist", {
+const getEnrolment = async (userID, setenrolment) => {
+    const res = await fetch("/api/getenrolmentlist", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -119,6 +119,6 @@ const getEnrollment = async (userID, setEnrollment) => {
     });
     const data = await res.json();
     if(data.status){
-        setEnrollment(data.enrollment);
+        setenrolment(data.enrolment);
     }
 };

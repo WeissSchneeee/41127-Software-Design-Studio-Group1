@@ -21,7 +21,7 @@ import { CreateAnAnnouncement } from "./announcement/component/CreateAnAnnouncem
 import { AnnouncementDetails } from "./announcement/component/AnnouncementDetails";
 import { StudentAnnouncementList } from "./student/announcement/StudentAnnouncementList"
 import { StudentAnnouncementDetails } from "./student/announcement/StudentAnnouncementDetails"
-import { StudentEnrollment } from "./student/enrollment/StudentEnrollment";
+import { StudentEnrolment } from "./student/enrolment/StudentEnrolment";
 import { SysLogList } from "./syslog/SysLogList";
 import { ErequestStudentForm } from "./student/erequest/ErequestStudentForm";
 import { ErequestStudent } from "./student/erequest/ErequestStudent";
@@ -114,8 +114,8 @@ function App() {
         <Route path="howtouse" element={<DashboardHowToUse />} />
         <Route path="" element={<Dashboard />} />
       </Route>
-      <Route path="/student/enrollment" element={<NavBar page="student/enrollment" />}>
-        <Route path="" element={<StudentEnrollment />} />
+      <Route path="/student/enrolment" element={<NavBar page="student/enrolment" />}>
+        <Route path="" element={<StudentEnrolment />} />
       </Route>
       <Route path="/student/erequest" element={<NavBar page="student/erequest" />}>
         <Route path="create" element={<ErequestStudentForm />} />

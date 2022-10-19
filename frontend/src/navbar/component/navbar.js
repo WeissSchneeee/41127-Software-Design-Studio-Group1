@@ -60,9 +60,9 @@ export const NavBar = (props) => {
                         (userID !== "none") && isStudent(userType) && <>
                             <a className={props.page === "student/dashboard" ? "active" : ""} href="/student/dashboard"><Dashboard/>Dashboard</a>
                             <div className="topnav-dropdown">
-                                <button className={(props.page === "student/courselist" || props.page === "student/subjectlist" || props.page === "student/enrollment" || props.page === "student/recommendation") ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><Book />Subjects</button>
+                                <button className={(props.page === "student/courselist" || props.page === "student/subjectlist" || props.page === "student/enrolment" || props.page === "student/recommendation") ? "topnav-dropbtn-active topnav-dropbtn" : "topnav-dropbtn"}><Book />Subjects</button>
                                 <div className="topnav-dropdown-content">
-                                    <a className={props.page === "student/enrollment" ? "active" : ""} href="/student/enrollment"><LibraryBooks/>Enrollment</a>
+                                    <a className={props.page === "student/enrolment" ? "active" : ""} href="/student/enrolment"><LibraryBooks/>Enrolment</a>
                                     <a className={props.page === "student/courselist" ? "active" : ""} href="/student/courselist"><Book/>Course List</a>
                                     <a className={props.page === "student/subjectlist" ? "active" : ""} href="/student/subjectlist"><Book/>Subject List</a>
                                     <a className={props.page === "student/recommendation" ? "active" : ""} href="/student/recommendation"><Recommend/>Recommendation</a>
