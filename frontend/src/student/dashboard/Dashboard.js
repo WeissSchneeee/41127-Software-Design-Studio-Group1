@@ -28,7 +28,7 @@ export const Dashboard = () => {
                             <hr class="my-4" />
                             <p>Let find out how it works!</p>
                             <p class="lead">
-                                <a class="btn btn-primary btn-lg" href={`/student/dashboard/howtouse`} role="button">Learn more...</a>
+                                <a class="btn btn-primary btn-lg" href={`/student/dashboard/howtouse`} style={{backgroundColor: "#456ad0ca"}} role="button">Learn more...</a>
                             </p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ export const Dashboard = () => {
 
             <div className="card my-5">
                 <div className="row">
-                    <div className="card-body col-12 col-lg-7 bg-primary">
+                    <div className="card-body col-12 col-lg-7" style={{backgroundColor: "#456ad0ca"}} >
                         <p className="lead text-white mb-0">
                             I've already know how it works, lets... <br/>
                             <a className="btn btn-warning btn-lg" href={`/student/recommendation`} role="button"><Search />Find My Best Course</a>

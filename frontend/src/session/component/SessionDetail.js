@@ -60,6 +60,8 @@ export const SessionDetail = _ => {
             console.log(error);
         }
     };
+    
+    if(userID === "none") return window.location.href = "/signin";
     return(
         <section className="container">
             { loading ? <div className="container">Loading data, please wait...</div> :
