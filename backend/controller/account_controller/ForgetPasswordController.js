@@ -43,14 +43,15 @@ const getUser = (email) => {
 const sendEmail = (email, password) => {
     try{
         const transporter = nodemailer.createTransport({
-            service: "hotmail",
+            host: 'smtp.gmail.com',
+            port: 587,
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
+                user: 'anjelin0707@gmail.com',
+                pass: 'hyvesiyfbnmfndpk',
+            },
         });
         const mailContent = {
-            from: "hackmeplease1@hotmail.com",
+            from: "anjelin0707@gmail.com",
             to: email,
             subject: "Subject Recommendation Forget Password",
             html: `The password for account: ${email} is '${password}'.`
