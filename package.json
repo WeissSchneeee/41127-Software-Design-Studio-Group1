@@ -12,17 +12,6 @@
       "test": "echo \"Error: no test specified\" && exit 1",
       "start": "node backend/index.js",
       "build": "cd backend && npm install && cd .. && cd frontend && yarn install && yarn build"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/WeissSchneeee/41127-Software-Design-Studio-Group1.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/WeissSchneeee/41127-Software-Design-Studio-Group1/issues"
-    },
-    "homepage": "https://github.com/WeissSchneeee/41127-Software-Design-Studio-Group1#readme"
+    }
   }
   
