@@ -86,6 +86,12 @@ app.use("/api/deletesession", require("./controller/session_controller/DeleteSes
 //recommendation APIs
 app.use("/api/KNN", require("./controller/KNN_controller/pyScriptController"));
 
+// CONNECTION TO FRONTEND BUILD
+app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
