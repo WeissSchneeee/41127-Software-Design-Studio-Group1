@@ -55,7 +55,7 @@ export const RecommendationForm = () => {
     const submit = (e) => {
         e.preventDefault()
         setSubmitting(true)
-        fetch("/api/recommendation/detail",{
+        fetch("/api/KNN",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -91,9 +91,19 @@ export const RecommendationForm = () => {
                         <div className="card-body">
                                 <form onSubmit={submit}>
                                 <div className="form-group row">
+                                        <label className="col-12 col-md-4">Want to enrol in core subject or not</label>
+                                        <div className="col-12 col-md-8">
+                                        <select id="coreSubject" value={state.input.preference} className="form-control form-select" onChange={handleChange} required>
+                                                <option value="">- select -</option>
+                                                <option value="Yes">Yes</option>
+                                                <option calue="No">No</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Quiz</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectQuiz" className="form-control" placeholder="subjectQuiz" onChange={handleChange} value={state.input.subjectQuiz}/>
+                                            <input type="text" id="subjectQuiz" className="form-control" placeholder="Subject Quiz" onChange={handleChange} value={state.input.subjectQuiz}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
@@ -125,14 +135,14 @@ export const RecommendationForm = () => {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Major</label>
                                         <div className="col-12 col-md-8">
-                                        <select id="subject_level" value={state.input.preference} className="form-control form-select" onChange={handleChange} required>
+                                        <select id="major" value={state.input.preference} className="form-control form-select" onChange={handleChange} required>
                                                 <option value="">- select -</option>
-                                                <option value="undergraduate">Data Analysis</option>
-                                                <option value="postgraduate">Cyber Security</option>
-                                                <option value="postgraduate">Software Development</option>
-                                                <option value="postgraduate">Machine Learning</option>
-                                                <option value="postgraduate">Real Time System</option>
-                                                <option value="postgraduate">Embedded System</option>
+                                                <option value="Data Analysis">Data Analysis</option>
+                                                <option value="Cyber Security">Cyber Security</option>
+                                                <option value="Software Development">Software Development</option>
+                                                <option value="Machine Learning">Machine Learning</option>
+                                                <option value="Real Time System">Real Time System</option>
+                                                <option value="Embedded System">Embedded System</option>
                                         </select>
                                         </div>
                                     </div>

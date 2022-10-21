@@ -83,6 +83,9 @@ app.use("/api/createsession", require("./controller/session_controller/CreateSes
 app.use("/api/updatesession", require("./controller/session_controller/UpdateSessionController"));
 app.use("/api/deletesession", require("./controller/session_controller/DeleteSessionController"));
 
+//recommendation APIs
+app.use("/api/KNN", require("./controller/KNN_controller/pyScriptController"));
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });

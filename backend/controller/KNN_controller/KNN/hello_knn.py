@@ -6,6 +6,7 @@ from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 import psycopg2
 import psycopg2.extras
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
@@ -79,8 +80,10 @@ def splitFeature(data):
 
 
 
-# print(splitSubjectNo('41092,10,2,9,4,6,8.5\n'))
-
+# # print(splitSubjectNo('41092,10,2,9,4,6,8.5\n'))
+# cwd = os.getcwd()
+# files = os.listdir(cwd)
+# print("Files in %r: %s" % (cwd, files))
 trainingDataSet = open("tran.txt", "r")
 # print(trainingDataSet.read())
 
