@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
                 specialData[0].date_of_birth = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
                 break;
         }
+        console.log(`Retrieved user data: ${userID}`);
         return res.status(200).json({
             status: true,
             user: user,
