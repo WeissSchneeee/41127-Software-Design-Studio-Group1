@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TableCell, TableRow, Checkbox } from "@mui/material";
 import { MainTable } from "../../figures/components/MainTable";
 import { getUserID } from "../../App";
+import { CallOutlined, QuestionAnswer, QuestionMark, Search } from "@mui/icons-material";
 
 export const StudentEnrolment = _ => {
     const [userID, setUserID] = useState();
@@ -25,6 +26,11 @@ export const StudentEnrolment = _ => {
     return(
         <section>
             {enrolmentList(enrolment)}
+            <div className="card-body col-12 col-lg-7" >
+                <p className="lead text-white mb-0">
+                    <a className="btn btn-warning btn-lg" href={`/student/recommendation`} role="button"><Search />Find My Best Course</a>
+                </p>
+            </div>
         </section>
     );
 };

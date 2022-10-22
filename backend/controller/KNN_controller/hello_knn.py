@@ -85,8 +85,8 @@ def splitFeature(data):
 # cwd = os.getcwd()
 # files = os.listdir(cwd)
 # print("Files in %r: %s" % (cwd, files))
-for data in range (1,7):
-  print(sys.argv[data])
+# for data in range (1,7):
+#   print(sys.argv[data])
 
 trainingDataSet = open("tran.txt", "r")
 # print(trainingDataSet.read())
@@ -99,11 +99,11 @@ for data in trainingDataSet:
 # print("Do you want to enroll in a core subject or not?(y/n)")
 answer = sys.argv[1]
 
-if(answer == 'y'):
+if(answer == 'Yes'):
   for data in reversed(rowTrainDataList):
     if(splitCoreOrAlt(data) == 0):
       rowTrainDataList.pop(rowTrainDataList.index(data))
-elif(answer == 'n'):
+elif(answer == 'No'):
   for data in reversed(rowTrainDataList):
     if(splitCoreOrAlt(data) == 100):
       rowTrainDataList.pop(rowTrainDataList.index(data))    

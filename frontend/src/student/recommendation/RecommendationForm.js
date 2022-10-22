@@ -74,7 +74,7 @@ export const RecommendationForm = () => {
     }
 
     const closeForm = () => {
-        navigate(-1)
+        navigate(`/student/enrolment`)
     }
 
 
@@ -137,12 +137,12 @@ export const RecommendationForm = () => {
                                         <div className="col-12 col-md-8">
                                         <select id="major" value={state.input.preference} className="form-control form-select" onChange={handleChange} required>
                                                 <option value="">- select -</option>
-                                                <option value="Data Analysis">Data Analysis</option>
-                                                <option value="Cyber Security">Cyber Security</option>
-                                                <option value="Software Development">Software Development</option>
-                                                <option value="Machine Learning">Machine Learning</option>
-                                                <option value="Real Time System">Real Time System</option>
-                                                <option value="Embedded System">Embedded System</option>
+                                                <option value="1">Data Analysis</option>
+                                                <option value="2">Cyber Security</option>
+                                                <option value="3">Software Development</option>
+                                                <option value="4">Machine Learning</option>
+                                                <option value="5">Real Time System</option>
+                                                <option value="6">Embedded System</option>
                                         </select>
                                         </div>
                                     </div>
