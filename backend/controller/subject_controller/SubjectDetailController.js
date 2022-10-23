@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
                 });
             } else {
                 if (result.rowCount > 0) {
+                    // console.log(result.rows[0]);
                     return res.status(200).json({
                         status: true,
                         data: result.rows[0]

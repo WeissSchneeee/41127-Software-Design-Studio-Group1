@@ -156,37 +156,37 @@ export function CreateSubjectForm(props) {
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Fees</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectFees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.subjectFees}/>
+                                            <input type="text" id="subject_fees" className="form-control" placeholder="Fees" onChange={handleChange} value={state.input.subject_fees}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Quiz</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectQuiz" className="form-control" placeholder="subjectQuiz" onChange={handleChange} value={state.input.subjectQuiz}/>
+                                            <input type="text" id="subject_quiz" className="form-control" placeholder="subjectQuiz" onChange={handleChange} value={state.input.subject_quiz}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Individual Assignment</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectIndiAssign" className="form-control" placeholder="Individual Assignment" onChange={handleChange} value={state.input.subjectIndiAssign}/>
+                                            <input type="text" id="subject_indiassign" className="form-control" placeholder="Individual Assignment" onChange={handleChange} value={state.input.subject_indiassign}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Group Assignment</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectGroupAssign" className="form-control" placeholder="Group Assignment" onChange={handleChange} value={state.input.subjectGroupAssign}/>
+                                            <input type="text" id="subject_groupassign" className="form-control" placeholder="Group Assignment" onChange={handleChange} value={state.input.subject_groupassign}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Exam</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectExam" className="form-control" placeholder="Exam" onChange={handleChange} value={state.input.subjectExam}/>
+                                            <input type="text" id="subject_exam" className="form-control" placeholder="Exam" onChange={handleChange} value={state.input.subject_exam}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-12 col-md-4">Number of Needed Pre Requisites Subject</label>
                                         <div className="col-12 col-md-8">
-                                            <input type="text" id="subjectPreRS" className="form-control" placeholder="Pre Requisites Subject" onChange={handleChange} value={state.input.subjectPreRS}/>
+                                            <input type="text" id="subject_preq" className="form-control" placeholder="Pre Requisites Subject" onChange={handleChange} value={state.input.subject_preq}/>
                                         </div>
                                     </div>                                                                        
                                     <div className="mb-3"></div>

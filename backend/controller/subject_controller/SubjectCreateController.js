@@ -5,10 +5,10 @@ const connection = require("../../index.js").connection;
 
 router.post("/", async (req, res) => {
     try {
-        const { subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS } = req.body;
+        const { subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq } = req.body;
 
         // create new
-        const inserted = await createNew(subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS);
+        const inserted = await createNew(subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq);
         
         if (typeof (inserted.newID) === 'undefined') {
             return res.status(400).json({
@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const createNew = async (subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS) => {
+const createNew = async (subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq) => {
     try {
 
         if (!subject_id) {
@@ -40,7 +40,7 @@ const createNew = async (subject_id, subject_name, pre_requisites, core_subjects
         }
 
         const sql = `insert into subject("subject_id", "subject_name", "pre_requisites", "core_subjects", "anti_requisites", "co_requisites", "scredit_points", "subject_descriptions", "subject_level", "electives", "subject_fees", "subject_quiz", "subject_indiassign", "subject_groupassign", "subject_exam", "subject_preq") values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11, $12, $13, $14, $15, $16);`
-        const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS]
+        const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq]
         
         return new Promise((resolve, reject) => {
             connection.query(sql, newRow, async (err, result) => {

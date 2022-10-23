@@ -73,10 +73,10 @@ export const SubjectList = (props) => {
                 label: 'Credit Points',
             },
             {
-                id: 'subject_fees',
+                id: 'subject_level',
                 numeric: true,
                 disablePadding: false,
-                label: 'Fees',
+                label: 'Subject Level',
             },
             {
                 id: 'edit',
@@ -147,8 +147,8 @@ export const SubjectList = (props) => {
                 </TableCell>
                 <TableCell className="table-cell" align="center">{row.subject_name}</TableCell>
                 {/* <TableCell className="table-cell" align="center">{row.course_duration}</TableCell> */}
-                <TableCell className="table-cell" align="center">{row.subject_credit_points}</TableCell>
-                <TableCell className="table-cell" align="center">{row.course_fees}</TableCell>
+                <TableCell className="table-cell" align="center">{row.scredit_points}</TableCell>
+                <TableCell className="table-cell" align="center">{row.subject_level}</TableCell>
                 <TableCell className="table-cell" align="center"><IconButton onClick={() => navigate(`/subjectlist/detail/${row.subject_id}`)}><Search /></IconButton></TableCell>
             </TableRow>
         );

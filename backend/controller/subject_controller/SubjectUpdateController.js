@@ -5,10 +5,10 @@ const connection = require("../../index.js").connection;
 
 router.post("/", async (req, res) => {
     try {
-        const { last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS } = req.body;
+        const { last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq } = req.body;
 
         // create new
-        const inserted = await update(last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS);
+        const inserted = await update(last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq);
         if (!inserted) {
             return res.status(400).json({
                 status: false,
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const update = async (last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees, subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS) => {
+const update = async (last_id, subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq) => {
     try {
 
         if (!subject_id) {
@@ -39,7 +39,7 @@ const update = async (last_id, subject_id, subject_name, pre_requisites, core_su
         }
 
         const sql = `update subject set subject_id = $1, subject_name = $2, pre_requisites = $3, core_subjects = $4, anti_requisites = $5, co_requisites = $6, scredit_points = $7, subject_descriptions = $8, subject_level = $9, electives = $10, "subject_fees" = $11, "subject_quiz" = $12, "subject_indiassign" = $13, "subject_groupassign" = $14, "subject_exam" = $15, "subject_preq" = $16 where subject_id = $17`
-        const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subjectFees,subjectQuiz, subjectIndiAssign, subjectGroupAssign, subjectExam, subjectPreRS, last_id]
+        const newRow = [subject_id, subject_name, pre_requisites, core_subjects, anti_requisites, co_requisites, scredit_points, subject_descriptions, subject_level, electives, subject_fees, subject_quiz, subject_indiassign, subject_groupassign, subject_exam, subject_preq, last_id]
         return new Promise((resolve, reject) => {
             connection.query(sql, newRow, async (err, result) => {
                 if (err) {
