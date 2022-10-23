@@ -30,6 +30,7 @@ import { SessionList } from "./session/component/SessionList";
 import { ErequestList } from "./erequest/component/ErequestList";
 import { ErequestDetail } from "./erequest/component/ErequestDetail";
 import { SessionDetail } from "./session/component/SessionDetail";
+import { WithdrawEnrolment } from "./student/enrolment/WithdrawEnrolment";
 
 export const getUserID = _ => {
   let token;
@@ -116,6 +117,7 @@ function App() {
       </Route>
       <Route path="/student/enrolment" element={<NavBar page="student/enrolment" />}>
         <Route path="" element={<StudentEnrolment />} />
+        <Route path="withdraw" element={<WithdrawEnrolment />} />
       </Route>
       <Route path="/student/erequest" element={<NavBar page="student/erequest" />}>
         <Route path="create" element={<ErequestStudentForm />} />

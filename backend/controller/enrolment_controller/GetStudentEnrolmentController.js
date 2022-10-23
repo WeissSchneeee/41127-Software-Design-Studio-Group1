@@ -44,7 +44,7 @@ module.exports = router;
 const getEnrolmentList = (userID) => {
     const date = new Date();
     const year = date.getFullYear();
-    const sql = `SELECT * FROM enrolment e, session s WHERE e.student_id = '${userID}' AND e.session_id = s.session_id AND s.year >= ${year};`;
+    const sql = `SELECT * FROM enrolment e, session s WHERE e.student_id = '${userID}' AND e.session_id = s.session_id AND s.year >= ${year} ORDER BY s.census_date;`;
     return new Promise((resolve, reject) => {
         connection.query(sql, (err, result) => {
             if(err){

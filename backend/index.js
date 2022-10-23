@@ -62,6 +62,7 @@ app.use("/api/announcement/detail", require("./controller/announcement_controlle
 
 // ENROLMENT CONTROLLER APIs
 app.use("/api/getenrolmentlist", require("./controller/enrolment_controller/GetStudentEnrolmentController"));
+app.use("/api/withdrawenrolment", require("./controller/enrolment_controller/WithdrawEnrolmentController"));
 app.use("/api/enrolment/sendinfo", require("./controller/enrolment_controller/SendInfoEnrolmentController"));
 
 // SYS LOG CONTROLLER APIs

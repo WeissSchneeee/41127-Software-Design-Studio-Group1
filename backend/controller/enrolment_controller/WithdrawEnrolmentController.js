@@ -6,20 +6,20 @@ router.post("/", async (req, res) => {
     try{
         const {list} = req.body;
         for(let i = 0; i < list.length; ++i){
-            const sessionID = list[i];
-            const affectedSession = await deleteSession(sessionID);
-            if(affectedSession != 1){
-                console.log("Error founded during session deletion process!");
+            const enrolmentID = list[i];
+            const affectedEnrolment = await deleteEnrolment(enrolmentID);
+            if(affectedEnrolment != 1){
+                console.log("Error founded during enrolment deletion process!");
                 return res.status(400).json({
                     status: false,
-                    message: "Error founded during session deletion process!"
+                    message: "Error founded during enrolment deletion process!"
                 });
             }
-            console.log(`Session id: ${sessionID} successfully deleted!`);
+            console.log(`Enrolment id: ${enrolmentID} successfully deleted!`);
         }
         return res.status(200).json({
             status: true,
-            message: "Session(s) successfully deleted!"
+            message: "Enrolment(s) successfully deleted!"
         });
     }catch(error){
         console.log(error);
@@ -30,8 +30,9 @@ router.post("/", async (req, res) => {
     }
 });
 module.exports = router;
-const deleteSession = (sessionID) => {
-    const sql = `DELETE FROM session WHERE session_id = '${sessionID}';`;
+
+const deleteEnrolment = (enrolmentID) => {
+    const sql = `DELETE FROM enrolment WHERE enrolment_id = '${enrolmentID}';`;
     return new Promise((resolve, reject) => {
         connection.query(sql, (err, result) => {
             if(err){

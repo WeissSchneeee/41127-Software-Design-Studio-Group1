@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TableCell, TableRow, Checkbox } from "@mui/material";
+import { TableCell, TableRow, Checkbox, IconButton } from "@mui/material";
 import { getUserID } from "../../App";
-import { Search } from "@mui/icons-material";
-import "../style/student.css";
-import { SecondaryTable } from "../../figures/components/SecondaryTable";
+import { MainTable } from "../../figures/components/MainTable";
 import { useNavigate } from "react-router-dom";
+import { Backspace } from "@mui/icons-material";
 
-export const StudentEnrolment = _ => {
+export const WithdrawEnrolment = _ => {
     const [userID, setUserID] = useState();
     const [enrolment, setEnrolment] = useState([]);
     const navigate = useNavigate();
@@ -28,23 +27,15 @@ export const StudentEnrolment = _ => {
 
     return(
         <section>
-            {enrolmentList(enrolment)}
-            <div className="button-row">
-                <div className="card-body col-3 col-lg-3" >
-                    <p className="lead text-white mb-0">
-                        <a className="btn btn-warning btn-lg" href={`/student/recommendation`} role="button"><Search />Find My Best Course</a>
-                    </p>
-                </div>
-                <button type="button" className="btn-lg" >Enrol in subjects</button>
-                <button type="button" className="btn-lg" onClick={() => navigate(`/student/enrolment/withdraw`)} >Withdraw from subjects</button>
-                <button type="button" className="btn-lg" >Email my enrolment details</button>
-            </div>
+            <p>
+                <IconButton title="Back" onClick={() => navigate(-1)}><Backspace/></IconButton>
+            </p>
+            {withdrawList(enrolment, setEnrolment, userID)}
         </section>
     );
 };
 
-const enrolmentList = (enrolment) => {
-    // List of subjects the student is currently enroled to
+const withdrawList = (enrolment, setEnrolment, userID) => {
     const columns = [
         {
             id: 'year',
@@ -116,8 +107,32 @@ const enrolmentList = (enrolment) => {
             </TableRow>
         );
     };
+    const withdraw = (selected) => {
+        try{
+            if(!window.confirm("Are you sure to withdraw the selected enrolment(s)?"))
+                return;
+            fetch("/api/withdrawenrolment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    list: selected
+                })
+            })
+                .then((res) => { return res.json(); } )
+                .then((data) => {
+                    alert(data.message);
+                    if(data.status){
+                        getEnrolment(userID, setEnrolment);
+                    }
+                });
+        }catch(error){
+            console.log(error);
+        }
+    };
     return(
-        SecondaryTable(columns, enrolment, cellFormat, "ENROLMENT DETAILS")
+        MainTable(columns, enrolment, cellFormat, "ENROLMENT WITHDRAWAL", "Enrol in subjects", null, "Withdraw from subjects", withdraw)
     );
 };
 
@@ -133,6 +148,8 @@ const getEnrolment = async (userID, setEnrolment) => {
     });
     const data = await res.json();
     if(data.status){
-        setEnrolment(data.enrolment);
+        setEnrolment(data.enrolment.filter(data => {
+            return new Date(data.census_date).getTime() >= new Date().getTime()
+        }));
     }
 };

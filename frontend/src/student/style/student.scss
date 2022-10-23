@@ -1,0 +1,7 @@
+.button-row{
+    display: inline-flex;
+    float: right;
+    & .card-body, button{
+        margin-right: 5px;
+    }
+}

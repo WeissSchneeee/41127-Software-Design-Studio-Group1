@@ -1,0 +1,7 @@
+.button-row {
+  display: inline-flex;
+  float: right;
+}
+.button-row .card-body, .button-row button {
+  margin-right: 5px;
+}/*# sourceMappingURL=student.css.map */
