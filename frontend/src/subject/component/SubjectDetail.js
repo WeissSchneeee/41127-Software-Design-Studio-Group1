@@ -1,8 +1,7 @@
-import { Add, Backspace, Create, Delete, Edit, Search } from "@mui/icons-material";
+import { Backspace } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, withRouter } from "react-router-dom";
-// import "../style/account.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export function SubjectDetail(props) {
@@ -80,8 +79,6 @@ export function SubjectDetail(props) {
                 <h2 className="mb-3"><strong>{state.input.subject_id} {state.input.subject_name}</strong></h2>
                 <p>
                     <IconButton title="Back" onClick={() => navigate(-1)}><Backspace /></IconButton>
-                    <IconButton title="Update" onClick={() => navigate(`/subjectlist/update/${state.input.subject_id}`)}><Edit /></IconButton>
-                    <IconButton title="Delete" onClick={handleDeleteBtn}><Delete /></IconButton>
                 </p>
                 <div className="card mb-3">
                     <div className="card-body">

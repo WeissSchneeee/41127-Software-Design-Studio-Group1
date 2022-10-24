@@ -25,17 +25,18 @@ export const WithdrawEnrolment = _ => {
         }
     }, [userID]);
 
+    if(userID === "none") return window.location.href = "/signin";
     return(
         <section>
             <p>
                 <IconButton title="Back" onClick={() => navigate(-1)}><Backspace/></IconButton>
             </p>
-            {withdrawList(enrolment, setEnrolment, userID)}
+            {withdrawList(enrolment, setEnrolment, userID, navigate)}
         </section>
     );
 };
 
-const withdrawList = (enrolment, setEnrolment, userID) => {
+const withdrawList = (enrolment, setEnrolment, userID, navigate) => {
     const columns = [
         {
             id: 'year',
@@ -107,6 +108,9 @@ const withdrawList = (enrolment, setEnrolment, userID) => {
             </TableRow>
         );
     };
+    const enrolSubject = _ => {
+        navigate(`/student/enrolment/create`);
+    };
     const withdraw = (selected) => {
         try{
             if(!window.confirm("Are you sure to withdraw the selected enrolment(s)?"))
@@ -132,7 +136,7 @@ const withdrawList = (enrolment, setEnrolment, userID) => {
         }
     };
     return(
-        MainTable(columns, enrolment, cellFormat, "ENROLMENT WITHDRAWAL", "Enrol in subjects", null, "Withdraw from subjects", withdraw)
+        MainTable(columns, enrolment, cellFormat, "ENROLMENT WITHDRAWAL", "Enrol in subjects", enrolSubject, "Withdraw from subjects", withdraw)
     );
 };
 

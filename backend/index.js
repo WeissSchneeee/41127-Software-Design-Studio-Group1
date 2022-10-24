@@ -62,6 +62,8 @@ app.use("/api/announcement/detail", require("./controller/announcement_controlle
 
 // ENROLMENT CONTROLLER APIs
 app.use("/api/getenrolmentlist", require("./controller/enrolment_controller/GetStudentEnrolmentController"));
+app.use("/api/getenrolmentoption", require("./controller/enrolment_controller/GetEnrolmentOptionController"));
+app.use("/api/createenrolment", require("./controller/enrolment_controller/EnrolSubjectController"));
 app.use("/api/withdrawenrolment", require("./controller/enrolment_controller/WithdrawEnrolmentController"));
 app.use("/api/enrolment/sendinfo", require("./controller/enrolment_controller/SendInfoEnrolmentController"));
 

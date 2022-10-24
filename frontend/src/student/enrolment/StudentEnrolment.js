@@ -26,6 +26,7 @@ export const StudentEnrolment = _ => {
         }
     }, [userID]);
 
+    if(userID === "none") return window.location.href = "/signin";
     return(
         <section>
             {enrolmentList(enrolment)}
@@ -35,7 +36,7 @@ export const StudentEnrolment = _ => {
                         <a className="btn btn-warning btn-lg" href={`/student/recommendation`} role="button"><Search />Find My Best Course</a>
                     </p>
                 </div>
-                <button type="button" className="btn-lg" >Enrol in subjects</button>
+                <button type="button" className="btn-lg" onClick={() => navigate(`/student/enrolment/create`)} >Enrol in subjects</button>
                 <button type="button" className="btn-lg" onClick={() => navigate(`/student/enrolment/withdraw`)} >Withdraw from subjects</button>
                 <button type="button" className="btn-lg" >Email my enrolment details</button>
             </div>

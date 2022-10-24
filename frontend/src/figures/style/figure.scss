@@ -12,8 +12,8 @@ $darkgreen: #115F5F;
     & .css-m1xwsv-MuiTableCell-root, .css-10dfkli-MuiTableCell-root, .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active, 
             .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon, .css-i4bv87-MuiSvgIcon-root, 
             .css-1ygcj2i-MuiTableCell-root, .css-1qgma8u-MuiButtonBase-root-MuiTableSortLabel-root, .css-105x7br-MuiTypography-root, 
-            .table-cell, .css-1azl6jz-MuiTableCell-root{
-        text-align: center;
+            .table-cell, .css-1azl6jz-MuiTableCell-root, .css-dx096b, .css-1sgp6db{
+        text-align: center !important;
         color: $middarkgrey;
         font-family: 'verdana';
         font-weight: 700;
@@ -27,7 +27,7 @@ $darkgreen: #115F5F;
     }
     & .tool-bar{
         background-color: white;
-        & .css-2pbtu6-MuiTypography-root{
+        & .css-2pbtu6-MuiTypography-root, .css-kr7kgz{
             font-family: 'verdana';
             color: black;
             font-weight: 700;
