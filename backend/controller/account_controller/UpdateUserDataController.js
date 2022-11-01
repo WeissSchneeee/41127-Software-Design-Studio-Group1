@@ -5,6 +5,7 @@ const connection = require("../../index.js").connection;
 router.post("/", async (req, res) => {
     try{
         const {userID, password, validationPass, firstName, lastName, contactNumber, dob} = req.body;
+        
         let user = await getUserData(userID);
         user = user[0];
         // Check Password

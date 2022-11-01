@@ -12,6 +12,7 @@ export const Profile = _ => {
         generalInfo: {},
         specialInfo: {}
     });
+
     const [buttonClicked, setButtonClicked] = useState(null);
 
     useEffect(() => {
@@ -55,6 +56,7 @@ export const Profile = _ => {
     items.push(NormalField("First Name", user.generalInfo.first_name, "first_name"));
     items.push(NormalField("Last Name (optional)", user.generalInfo.last_name, "last_name"));
     items.push(NormalField("Contact Number", user.generalInfo.contact_number, "contact_number"));
+    
     if(user.generalInfo.user_type === "s")
         items.push(DateField("Date of Birth", String(user.specialInfo.date_of_birth).substring(0,10), "dob"));
 
